@@ -2,11 +2,29 @@
     background-image: url('/assets/img/home-bg.png');
     width: auto; /* ocupa todo el ancho */          
     height: auto; /* ocupa todo el ancho */  
+    overflow: hidden; /* corta todo lo que se salga del section */
 }
 
-.sectionstarts div img {
-    width: 51%; /* la hace la mitad del ancho del div */
-    height: auto; /* mantiene proporción */
-    display: block; /* opcional, para centrar si quieres */
-    margin: 0 auto; /* centra horizontalmente */
+.sectionstarts h3 {
+    font-size: 4rem;           /* Define el tamaño de la letra del h3 */
+    text-transform: uppercase; /* Convierte todo el texto a mayúsculas */
+    color: #fff;               /* Color del texto: blanco */
+    margin-top: -8rem;         /* Mueve el h3 8rem hacia arriba */
 }
+
+.sectionstarts p {
+  font-size: 1.7rem; /* Tamaño de la letra del párrafo */
+  line-height: 2;    /* Altura de línea: espacio entre líneas del texto */
+  color: #aaa;       /* Color del texto: gris claro */
+  padding: 2rem 0;   /* Espacio interno arriba y abajo del párrafo, 0 a los lados */
+}
+
+
+.sectionstarts > div > img {
+    display: block;      /* Hace que la imagen sea un bloque para poder centrarla */
+    margin: 0 auto;      /* Centra horizontalmente la imagen dentro del div */
+    width: 50%;          /* Ajusta el ancho al 50% del contenedor padre */
+    height: auto;        /* Mantiene la proporción original de la imagen */
+}
+
+
