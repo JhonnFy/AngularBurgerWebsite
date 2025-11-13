@@ -1,0 +1,12 @@
+.sectionstarts {
+    background-image: url('/assets/img/home-bg.png');
+    width: auto; /* ocupa todo el ancho */          
+    height: auto; /* ocupa todo el ancho */  
+}
+
+.sectionstarts div img {
+    width: 51%; /* la hace la mitad del ancho del div */
+    height: auto; /* mantiene proporción */
+    display: block; /* opcional, para centrar si quieres */
+    margin: 0 auto; /* centra horizontalmente */
+}

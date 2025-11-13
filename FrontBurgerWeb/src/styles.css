@@ -141,7 +141,7 @@ section {
 
 .home {
   margin-top: 7rem;
-  background: url(assets/img/1023logo.png) no-repeat;
+  /* background: url(assets/img/1023logo.png) no-repeat; */
   background-size: cover;
   background-position: center;
 }
