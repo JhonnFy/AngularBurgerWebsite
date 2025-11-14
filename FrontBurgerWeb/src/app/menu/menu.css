@@ -34,4 +34,21 @@
   transform: translateX(0) scale(0.90) !important; /* 98% tamaño, casi igual que el original */
 }
 
+.bi-blockquote-right {
+  font-size: 3rem;            /* tamaño grande */
+  color: white;               /* color del ícono */
+  background-color: black;    /* fondo detrás del ícono */
+  padding: 0.5rem;            /* espacio alrededor del ícono */
+  border-radius: 50%;         /* hace el fondo circular */
+  display: inline-flex;       /* permite centrar el ícono en el círculo */
+  align-items: center;
+  justify-content: center;
+}
 
+.bi-disc-fill {
+  color: white;               /* color del icono */
+  background-color: black;    /* fondo circular */
+  padding: 0.3rem;            /* espacio alrededor */
+  border-radius: 50%;         /* fondo redondo */
+  font-size: 2rem;            /* tamaño más grande */
+}
