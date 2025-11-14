@@ -1,9 +1,29 @@
-#carouselExampleCaptions {
-  margin-top: 500px; /* súbelo o bájalo como quieras */
+.sectionmain {
+    width: 100vw;              /* La caja ocupa el 100% del ancho visible de la ventana */
+    height: calc(100vh - 7rem);/* La caja mide el alto de la pantalla menos el header (7rem) */
+    overflow: hidden;          /* Todo lo que se salga de la caja se recorta (sin scroll) */
+    display: flex;             /* Activa flexbox para centrar el contenido */
+    justify-content: center;   /* Centra el contenido horizontalmente */
+    align-items: center;       /* Centra el contenido verticalmente (en la caja) */
 }
 
-.carousel-item img {
-  height: 100px;
-  width: 100%;
-  object-fit: cover;
+.sectionmain img {
+    max-width: 50%;            /* La imagen nunca puede superar el 50% del ancho de la caja */
+    height: auto;              /* Mantiene la proporción original de la imagen */
+    display: block;            /* Hace que la imagen se comporte como bloque */
+    margin: 0 auto;            /* Centra horizontalmente la imagen dentro del div */
+    transform: translateY(5rem); /* Baja SOLO la imagen 5rem desde su posición natural */
+}
+
+.sectionmain h3 {
+    text-transform: uppercase; /* Convierte el título a mayúsculas */
+    color: #fff;               /* Color blanco para el texto */
+}
+
+.sectionmain p {
+    color: #aaa;               /* Color gris claro para el párrafo */
+}
+
+.sectionmain > div {
+    margin-top: 8rem;          /* Baja TODO el contenido del div (imagen + texto) 8rem */
 }
