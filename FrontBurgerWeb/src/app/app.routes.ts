@@ -1,8 +1,9 @@
 import { Routes } from '@angular/router';
 import { Dashboard } from './dashboard/dashboard';
-import { hash } from 'crypto';
+import { Menu } from './menu/menu';
 
 
 export const routes: Routes = [
-    { path: '', component: Dashboard }
+    { path: '', component: Dashboard },
+    { path: 'menu',component: Menu }
 ];

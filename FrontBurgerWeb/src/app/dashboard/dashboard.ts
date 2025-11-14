@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  standalone: true,
   templateUrl: './dashboard.html',
-  styleUrl: './dashboard.css',
+  styleUrls: ['./dashboard.css'],
+  imports: [RouterModule]   // ← AQUÍ EL ARREGLO
 })
 export class Dashboard {
-
+  title = 'Dashboard';
 }
