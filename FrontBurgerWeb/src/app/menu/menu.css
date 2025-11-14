@@ -8,22 +8,30 @@
 }
 
 .sectionmain img {
-    max-width: 50%;            /* La imagen nunca puede superar el 50% del ancho de la caja */
+    max-width: 41%;            /* La imagen nunca puede superar el 50% del ancho de la caja */
     height: auto;              /* Mantiene la proporción original de la imagen */
     display: block;            /* Hace que la imagen se comporte como bloque */
     margin: 0 auto;            /* Centra horizontalmente la imagen dentro del div */
     transform: translateY(5rem); /* Baja SOLO la imagen 5rem desde su posición natural */
 }
 
-.sectionmain h3 {
+.sectionmain h5 {
     text-transform: uppercase; /* Convierte el título a mayúsculas */
     color: #fff;               /* Color blanco para el texto */
 }
 
 .sectionmain p {
-    color: #aaa;               /* Color gris claro para el párrafo */
+    color: #e4dede;               /* Color gris claro para el párrafo */
 }
 
 .sectionmain > div {
     margin-top: 8rem;          /* Baja TODO el contenido del div (imagen + texto) 8rem */
 }
+
+
+.carousel-item {
+  transition: transform 0.2s ease-in-out !important;
+  transform: translateX(0) scale(0.90) !important; /* 98% tamaño, casi igual que el original */
+}
+
+
