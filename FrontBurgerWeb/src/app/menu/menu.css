@@ -28,6 +28,45 @@
     margin-top: 8rem;          /* Baja TODO el contenido del div (imagen + texto) 8rem */
 }
 
+/* Estrellas dentro del menú */
+.menustart .stars {
+    color: gold;            /* color dorado de las estrellas */
+    font-size: 1rem;          /* tamaño de las estrellas */
+    margin-bottom: 0.5rem;    /* espacio debajo de las estrellas */
+}
+
+.menustart h3 {
+    font-size: 1.2rem;
+    color: #ffffff;
+}
+
+.menustart div {
+    font-size: 1.2rem;
+    color: #ffffff;
+}
+
+.menustart a.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  cursor: pointer;
+  color: #fff; /* color del texto */
+  border: 0.2rem solid rgba(255, 255, 255, 0.3);
+  background-color: transparent; /* fondo inicial */
+  font-size: 1.7rem;
+  padding: 1rem 3rem;
+  text-align: center;
+  border-radius: 0.5rem; /* opcional: bordes redondeados */
+  transition: all 0.3s ease; /* para animar el cambio */
+}
+
+.menustart a.btn:hover {
+  color: #000;             /* color del texto al pasar el cursor */
+  background-color: #fff;  /* fondo al pasar el cursor */
+  border-color: #fff;      /* opcional: cambia el borde también */
+}
+
+
+
 
 .carousel-item {
   transition: transform 0.2s ease-in-out !important;
