@@ -1,102 +1,124 @@
 
+CREATE DATABASE BurgerWeb
+GO
 
---CREATE DATABASE WebBurger
-USE WebBurger
+USE BurgerWeb
+GO
 
--- ===============================================
--- 1. TABLA: Clientes
--- ===============================================
-CREATE TABLE Clientes (
-    cliente_id INT IDENTITY(1,1) PRIMARY KEY,
-    nombre NVARCHAR(100) NOT NULL,
-    cedula NVARCHAR(30) NOT NULL UNIQUE,
-    direccion NVARCHAR(200),
-    telefono1 NVARCHAR(30),
-    telefono2 NVARCHAR(30),
-    referencia NVARCHAR(200),
-    metodo_pago NVARCHAR(50)
+-- ===================================================
+-- TABLA DE CLIENTES
+-- ===================================================
+CREATE TABLE clients (
+    cc VARCHAR(20) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    address VARCHAR(200),
+    phone1 VARCHAR(20),
+    phone2 VARCHAR(20),
+    reference VARCHAR(200),
+    payment_method VARCHAR(50)
 );
 
-
--- ===============================================
--- 2. TABLA: Tiendas (Contact)
--- ===============================================
-CREATE TABLE Tiendas (
-    tienda_id INT IDENTITY(1,1) PRIMARY KEY,
-    nombre NVARCHAR(100) NOT NULL,
-    direccion NVARCHAR(200) NOT NULL,
-    telefono NVARCHAR(30)
+-- ===================================================
+-- TABLA DE TIENDAS (Contact)
+-- ===================================================
+CREATE TABLE contact (
+    id INT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    address VARCHAR(200),
+    phone VARCHAR(20)
 );
 
-
--- ===============================================
--- 3. TABLA: Productos (Menu / About)
--- ===============================================
-CREATE TABLE Productos (
-    producto_id INT IDENTITY(1,1) PRIMARY KEY,
-    nombre NVARCHAR(100) NOT NULL,
-    tipo NVARCHAR(20) NOT NULL  -- 'menu' o 'about'
+-- ===================================================
+-- HAMBURGUESAS POR CANAL
+-- ===================================================
+-- Ventas físicas
+CREATE TABLE menuHamburger (
+    id INT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
 );
 
-
--- ===============================================
--- 4. TABLA: Orders (unificada)
--- ===============================================
-CREATE TABLE Orders (
-    order_id INT IDENTITY(1,1) PRIMARY KEY,
-    cliente_id INT NOT NULL,
-    tienda_id INT NOT NULL,
-    tipo_pedido NVARCHAR(20) NOT NULL,  -- 'menu' o 'about'
-    estado NVARCHAR(20) NOT NULL DEFAULT 'pending',
-    fecha DATETIME NOT NULL DEFAULT GETDATE(),
-
-    FOREIGN KEY (cliente_id) REFERENCES Clientes(cliente_id),
-    FOREIGN KEY (tienda_id) REFERENCES Tiendas(tienda_id)
+-- Ventas domicilio
+CREATE TABLE aboutHamburger (
+    id INT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
 );
 
+-- ===================================================
+-- PEDIDOS
+-- ===================================================
+-- Pedidos venta física
+CREATE TABLE order_menu (
+    id INT PRIMARY KEY,
+    client_cc VARCHAR(20) NOT NULL,
+    hamburger_id INT NOT NULL,
+    quantity INT NOT NULL DEFAULT 1,
+    total_price DECIMAL(10,2) NOT NULL,
+    status VARCHAR(20) DEFAULT 'pending',
+    store_id INT NOT NULL,
+    created_at DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (client_cc) REFERENCES clients(cc),
+    FOREIGN KEY (hamburger_id) REFERENCES menuHamburger(id),
+    FOREIGN KEY (store_id) REFERENCES contact(id)
+);
 
--- ===============================================
--- 5. TABLA: OrderItems (productos de cada pedido)
--- ===============================================
-CREATE TABLE OrderItems (
-    item_id INT IDENTITY(1,1) PRIMARY KEY,
+-- Pedidos venta domicilio
+CREATE TABLE order_about (
+    id INT PRIMARY KEY,
+    client_cc VARCHAR(20) NOT NULL,
+    hamburger_id INT NOT NULL,
+    quantity INT NOT NULL DEFAULT 1,
+    total_price DECIMAL(10,2) NOT NULL,
+    status VARCHAR(20) DEFAULT 'pending',
+    store_id INT NOT NULL,
+    created_at DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (client_cc) REFERENCES clients(cc),
+    FOREIGN KEY (hamburger_id) REFERENCES aboutHamburger(id),
+    FOREIGN KEY (store_id) REFERENCES contact(id)
+);
+
+-- ===================================================
+-- REVIEWS
+-- ===================================================
+CREATE TABLE review (
+    id INT PRIMARY KEY,
     order_id INT NOT NULL,
-    producto_id INT NOT NULL,
-    cantidad INT NOT NULL,
-    precio_unitario DECIMAL(10,2) NOT NULL,
-
-    FOREIGN KEY (order_id) REFERENCES Orders(order_id),
-    FOREIGN KEY (producto_id) REFERENCES Productos(producto_id)
+    order_type VARCHAR(20) NOT NULL, -- 'menu' o 'about'
+    comment VARCHAR(500),
+    created_at DATETIME DEFAULT GETDATE()
 );
 
-
--- ===============================================
--- 6. TABLA: Reviews (relación correcta)
--- ===============================================
-CREATE TABLE Reviews (
-    review_id INT IDENTITY(1,1) PRIMARY KEY,
+-- ===================================================
+-- BLOGS (Reportes)
+-- ===================================================
+CREATE TABLE blogs (
+    id INT PRIMARY KEY,
     order_id INT NOT NULL,
-    comentario NVARCHAR(300) NOT NULL,
-    fecha DATETIME NOT NULL DEFAULT GETDATE(),
-
-    FOREIGN KEY (order_id) REFERENCES Orders(order_id)
+    order_type VARCHAR(20) NOT NULL, -- 'menu' o 'about'
+    client_cc VARCHAR(20) NOT NULL,
+    hamburger_name VARCHAR(50) NOT NULL,
+    quantity INT NOT NULL,
+    total_price DECIMAL(10,2) NOT NULL,
+    payment_method VARCHAR(50),
+    store_name VARCHAR(50),
+    status VARCHAR(20),
+    created_at DATETIME DEFAULT GETDATE()
 );
 
+-- ===================================================
+-- INSERT DE DATOS INICIALES
+-- ===================================================
+-- Tiendas
+INSERT INTO contact (id, name, address, phone) VALUES
+(1, 'Hamburger Sur', 'Calle Sur 123', '3101234567'),
+(2, 'Hamburger Chapinero', 'Calle Chapinero 456', '3102345678'),
+(3, 'Hamburger Chico', 'Calle Chico 789', '3103456789');
 
--- ===============================================
--- 7. TABLA: Blogs (histórico de pedidos)
--- ===============================================
-CREATE TABLE Blogs (
-    blog_id INT IDENTITY(1,1) PRIMARY KEY,
-    order_id INT NOT NULL,
-    fecha DATETIME NOT NULL DEFAULT GETDATE(),
-    estado NVARCHAR(20) NOT NULL,
-    total DECIMAL(10,2) NOT NULL,
+-- Hamburguesas físicas
+INSERT INTO menuHamburger (id, name) VALUES
+(1, 'Cheese Hamburger'),
+(2, 'BBQ Hamburger'),
+(3, 'Hawaiian Burger');
 
-    -- Datos redundantes para reportes
-    cliente_nombre NVARCHAR(100),
-    tienda_nombre NVARCHAR(100),
-    metodo_pago NVARCHAR(50),
-
-    FOREIGN KEY (order_id) REFERENCES Orders(order_id)
-);
+-- Hamburguesas domicilio
+INSERT INTO aboutHamburger (id, name) VALUES
+(1, 'The Classics About Burger');

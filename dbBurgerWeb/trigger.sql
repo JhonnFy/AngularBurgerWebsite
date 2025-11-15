@@ -1,102 +1,80 @@
-﻿
-USE WebBurger
+
+
+USE BurgerWeb
 GO
 
---=======================
---TRIGGER 1 – Insertar en Blogs cuando se crea un pedido
---=======================
-CREATE TRIGGER trg_order_insert_blog
-ON Orders
+-- ===================================================
+-- TRIGGER PARA PEDIDOS DE VENTA F�SICA (order_menu)
+-- ===================================================
+CREATE TRIGGER trg_order_menu_insert
+ON order_menu
 AFTER INSERT
 AS
 BEGIN
-    INSERT INTO Blogs (order_id, estado, total, cliente_nombre, tienda_nombre, metodo_pago)
+    INSERT INTO blogs (
+        order_id,
+        order_type,
+        client_cc,
+        hamburger_name,
+        quantity,
+        total_price,
+        payment_method,
+        store_name,
+        status,
+        created_at
+    )
     SELECT 
-        i.order_id,
-        i.estado,
-        (
-            SELECT SUM(oi.cantidad * oi.precio_unitario)
-            FROM OrderItems oi
-            WHERE oi.order_id = i.order_id
-        ) AS total,
-        c.nombre,
-        t.nombre,
-        c.metodo_pago
+        i.id,
+        'menu',                           -- tipo de pedido
+        c.cc,
+        m.name,
+        i.quantity,
+        i.total_price,
+        c.payment_method,
+        s.name,
+        i.status,
+        i.created_at
     FROM inserted i
-    INNER JOIN Clientes c ON i.cliente_id = c.cliente_id
-    INNER JOIN Tiendas t ON i.tienda_id = t.tienda_id;
+    INNER JOIN clients c ON i.client_cc = c.cc
+    INNER JOIN menuHamburger m ON i.hamburger_id = m.id
+    INNER JOIN contact s ON i.store_id = s.id;
 END;
 GO
 
---=======================
---TRIGGER 2 – Actualizar Blogs cuando cambia el ESTADO
---=======================
-CREATE TRIGGER trg_order_update_blog
-ON Orders
-AFTER UPDATE
-AS
-BEGIN
-    IF UPDATE(estado)
-    BEGIN
-        UPDATE Blogs
-        SET estado = i.estado
-        FROM Blogs b
-        INNER JOIN inserted i ON b.order_id = i.order_id;
-    END
-END;
-GO
-
---=======================
---TRIGGER 3 – Cuando un cliente deja un Review → marcar pedido como ENTREGADO
---=======================
-CREATE TRIGGER trg_review_entregado
-ON Reviews
+-- ===================================================
+-- TRIGGER PARA PEDIDOS DE VENTA A DOMICILIO (order_about)
+-- ===================================================
+CREATE TRIGGER trg_order_about_insert
+ON order_about
 AFTER INSERT
 AS
 BEGIN
-    UPDATE Orders
-    SET estado = 'delivered'
-    WHERE order_id IN (SELECT order_id FROM inserted)
-      AND estado <> 'delivered';
-END;
-GO
-
---=======================
---TRIGGER 4 – Recalcular total en Blogs cuando cambian items
---=======================
-CREATE TRIGGER trg_orderitems_update_total
-ON OrderItems
-AFTER INSERT, UPDATE, DELETE
-AS
-BEGIN
-    UPDATE Blogs
-    SET total = (
-        SELECT SUM(oi.cantidad * oi.precio_unitario)
-        FROM OrderItems oi
-        WHERE oi.order_id = b.order_id
+    INSERT INTO blogs (
+        order_id,
+        order_type,
+        client_cc,
+        hamburger_name,
+        quantity,
+        total_price,
+        payment_method,
+        store_name,
+        status,
+        created_at
     )
-    FROM Blogs b
-    INNER JOIN Orders o ON b.order_id = o.order_id;
+    SELECT 
+        i.id,
+        'about',                          -- tipo de pedido
+        c.cc,
+        m.name,
+        i.quantity,
+        i.total_price,
+        c.payment_method,
+        s.name,
+        i.status,
+        i.created_at
+    FROM inserted i
+    INNER JOIN clients c ON i.client_cc = c.cc
+    INNER JOIN aboutHamburger m ON i.hamburger_id = m.id
+    INNER JOIN contact s ON i.store_id = s.id;
 END;
 GO
-
---=======================
---TRIGGER 5 – Insertar automáticamente en Blogs cuando se agregan items
---=======================
-CREATE TRIGGER trg_orderitems_insert_blog
-ON OrderItems
-AFTER INSERT
-AS
-BEGIN
-    UPDATE Blogs
-    SET total = (
-        SELECT SUM(oi.cantidad * oi.precio_unitario)
-        FROM OrderItems oi
-        WHERE oi.order_id = b.order_id
-    )
-    FROM Blogs b
-    INNER JOIN inserted i ON b.order_id = i.order_id;
-END;
-GO
-
-
