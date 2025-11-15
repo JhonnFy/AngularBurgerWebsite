@@ -1,4 +1,52 @@
-.h3{
-    background-color: bisque;
+.sectionreviews {
+    width: 100vw;
+    min-height: calc(100vh - 7rem);
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 12rem;  /* BAJA TODO */
+}
+
+.sectionreviews .heading {
     text-align: center;
+}
+
+.sectionreviews .box-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4rem;
+  width: 90%;
+  margin-top: 10rem; /* BAJA LAS 3 CAJAS */
+}
+
+.sectionreviews .box-container .box {
+  text-align: center;
+  padding: 2rem;
+}
+
+.sectionreviews .box-container .box img {
+  height: 10rem;
+  width: 10rem;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.sectionreviews .box-container .box h3 {
+  font-size: 2rem;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.sectionreviews .box-container .box p {
+  font-size: 1.4rem;
+  line-height: 2;
+  color: #aaa;
+  padding: 1rem 0;
+}
+
+.sectionreviews .box-container .box .stars i {
+  font-size: 1.7rem;
+  color: #eacf4f;
 }
