@@ -1,4 +1,71 @@
 
-H6{
-    background-color: blue;
+.sectionabout {
+    width: 100vw;              /* La caja ocupa el 100% del ancho visible de la ventana */
+    height: calc(100vh - 7rem);/* La caja mide el alto de la pantalla menos el header (7rem) */
+    overflow: hidden;          /* Todo lo que se salga de la caja se recorta (sin scroll) */
+    display: flex;             /* Activa flexbox para centrar el contenido */
+    justify-content: center;   /* Centra el contenido horizontalmente */
+    align-items: center;       /* Centra el contenido verticalmente (en la caja) */
+}
+
+.sectionabout img {
+    max-width: 41%;            /* La imagen nunca puede superar el 50% del ancho de la caja */
+    height: auto;              /* Mantiene la proporción original de la imagen */
+    display: block;            /* Hace que la imagen se comporte como bloque */
+    margin: 0 auto;            /* Centra horizontalmente la imagen dentro del div */
+    transform: translateY(5rem); /* Baja SOLO la imagen 5rem desde su posición natural */
+}
+
+.sectionabout h3 {
+    text-transform: uppercase; /* Convierte el título a mayúsculas */
+    color: #fff;               /* Color blanco para el texto */
+}
+
+.sectionabout p {
+    color: #e4dede;               /* Color gris claro para el párrafo */
+}
+
+.sectionabout > div {
+    margin-top: 8rem;          /* Baja TODO el contenido del div (imagen + texto) 8rem */
+}
+
+
+
+.contentabout .icons {
+    display: grid;
+    grid-template-columns: repeat(2, auto); /* 2 columnas */
+    gap: 1rem 2rem; /* espacio entre filas y columnas */
+}
+
+.contentabout .icons h3 {
+    display: flex;
+    align-items: center;
+    gap: .5rem;      /* espacio entre el check y el texto */
+}
+
+.contentabout .icons i {
+    color: #ffd000;  /* amarillo */
+    font-size: 1.4rem;
+}
+
+
+
+.menuabout a.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  cursor: pointer;
+  color: #fff; /* color del texto */
+  border: 0.2rem solid rgba(255, 255, 255, 0.3);
+  background-color: transparent; /* fondo inicial */
+  font-size: 1.7rem;
+  padding: 1rem 3rem;
+  text-align: center;
+  border-radius: 0.5rem; /* opcional: bordes redondeados */
+  transition: all 0.3s ease; /* para animar el cambio */
+}
+
+.menuabout a.btn:hover {
+  color: #000;             /* color del texto al pasar el cursor */
+  background-color: #fff;  /* fondo al pasar el cursor */
+  border-color: #fff;      /* opcional: cambia el borde también */
 }
