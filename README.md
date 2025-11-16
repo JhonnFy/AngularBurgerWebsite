@@ -9,6 +9,7 @@ Aplicación desarrollada en .NET con arquitectura en capas (Data, Business, Cont
 1. [Interface](#Interface)  
 2. [DiagramaRelacional](#DiagramaRelacional)
 3. [OrdenIsert](#OrdenIsert)
+4. [Test](#Test)
 ---
 
 ## Interface
@@ -115,6 +116,15 @@ Tabla de sedes / tiendas:
 5️⃣ order_menu  
 6️⃣ order_about  
 7️⃣ review
+
+
+---
+
+
+## Test
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/2810f32d-8003-4f35-81d8-8110f14f3d28" />
+
+
 
 
 ---
