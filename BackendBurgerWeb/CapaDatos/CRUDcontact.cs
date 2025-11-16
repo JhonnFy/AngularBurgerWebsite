@@ -16,7 +16,7 @@ namespace CapaDatos
 
         private Conexion conexion = new Conexion();
 
-        public List<ModeloContact> ReadContact()
+        public List<ModeloContact> GetContacts()
         {
             var ListaReadContact = new List<ModeloContact>();
 
@@ -45,8 +45,8 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("[****].[ERROR].[CRUDcontact].[ReadContact]" + ex.Message);
-                throw new Exception("[****].[ERROR].[CRUDcontact].[ReadContact]" + ex.Message);
+                Debug.WriteLine("[****].[ERROR].[CRUDcontact].[GetContacts]" + ex.Message);
+                throw new Exception("[****].[ERROR].[CRUDcontact].[GetContacts]" + ex.Message);
             }
             return ListaReadContact;
         }
