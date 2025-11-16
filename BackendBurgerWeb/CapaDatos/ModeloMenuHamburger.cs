@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-    internal class ModeloMenuHamburger
+    public class ModeloMenuHamburger
     {
+        public int id { get; set; }
+        public string name { get; set; }
+
+        public ModeloMenuHamburger()
+        {
+            id = 0;
+            name = string.Empty;
+        }
+
     }
 }
