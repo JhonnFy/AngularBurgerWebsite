@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-    internal class ModeloAboutHamburger
+    public class ModeloAboutHamburger
     {
+        public int id { get; set; }
+        public string name { get; set; }
+
+        public ModeloAboutHamburger()
+        {
+            id = 0;
+            name = string.Empty;
+        }
     }
 }
