@@ -6,15 +6,13 @@ Aplicación desarrollada en .NET con arquitectura en capas (Data, Business, Cont
 
 ## Tabla de Contenidos
 
-1. [Interface](#Interface)  
+1. [FlujoDePedidosClientes](#FlujoDePedidosClientes)  
 2. [DiagramaRelacional](#DiagramaRelacional)
 3. [OrdenIsert](#OrdenIsert)
 4. [Test](#Test)
 ---
 
-## Interface
-
-# Flujo de Pedidos y Clientes
+## FlujoDePedidosClientes
 
 ## 1️⃣ Registro de Clientes
 
@@ -128,5 +126,6 @@ Tabla de sedes / tiendas:
 
 
 ---
+
 
 
