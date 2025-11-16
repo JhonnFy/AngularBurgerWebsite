@@ -7,7 +7,7 @@ Aplicación desarrollada en .NET con arquitectura en capas (Data, Business, Cont
 ## Tabla de Contenidos
 
 1. [Interface](#Interface)  
-2. [Diagrama Relacional](#Diagrama Relacional)  
+2. [DiagramaRelacional](#DiagramaRelacional)  
 ---
 
 ## Interface
@@ -99,9 +99,10 @@ Tabla de sedes / tiendas:
 
 
 
-## Diagrama Relacional
+## DiagramaRelacional
 
 <img width="1366" height="630" alt="image" src="https://github.com/user-attachments/assets/877bd216-20c6-43d9-8070-0d4820b388c4" />
 
 
 ---
+
