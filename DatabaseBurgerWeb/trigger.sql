@@ -1,5 +1,3 @@
-
-
 USE BurgerWeb
 GO
 
@@ -24,9 +22,9 @@ BEGIN
         created_at
     )
     SELECT 
-        i.id,
-        'menu',                           -- tipo de pedido
-        c.cc,
+        i.id,          -- BIGINT
+        'menu',        -- tipo de pedido
+        c.cc,          -- BIGINT
         m.name,
         i.quantity,
         i.total_price,
@@ -62,9 +60,9 @@ BEGIN
         created_at
     )
     SELECT 
-        i.id,
-        'about',                          -- tipo de pedido
-        c.cc,
+        i.id,          -- BIGINT
+        'about',       -- tipo de pedido
+        c.cc,          -- BIGINT
         m.name,
         i.quantity,
         i.total_price,

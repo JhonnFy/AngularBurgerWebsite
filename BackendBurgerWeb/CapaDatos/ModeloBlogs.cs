@@ -8,10 +8,10 @@ namespace CapaDatos
 {
     public class ModeloBlogs
     {
-        public int id { get; set; }
-        public int order_id { get; set; }
+        public long id { get; set; }
+        public long order_id { get; set; }
         public string order_type { get; set; }
-        public string client_cc { get; set; }
+        public long client_cc { get; set; }
         public string hamburger_name { get; set; }
         public int quantity { get; set; }
         public decimal total_price { get; set; }
@@ -25,7 +25,7 @@ namespace CapaDatos
             id = 0;
             order_id = 0;
             order_type = string.Empty;
-            client_cc = string.Empty;
+            client_cc = 0;
             hamburger_name = string.Empty;
             quantity = 0;
             total_price = 0;

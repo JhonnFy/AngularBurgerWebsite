@@ -8,8 +8,8 @@ namespace CapaDatos
 {
     public class ModeloReview
     {
-        public int id { get; set; }
-        public int order_id { get; set; }
+        public long id { get; set; }
+        public long order_id { get; set; }
         public string order_type { get; set; }
         public string comment { get; set; }
         public DateTime created_at { get; set; }

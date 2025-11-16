@@ -8,20 +8,20 @@ namespace CapaDatos
 {
     public class ModeloOrderAbout
     {
-        public int id { get; set; }
-        public string client_cc { get; set; } /*Fk*/
-        public int hamburger_id { get; set; }
+        public long id { get; set; }
+        public long client_cc { get; set; } /*Fk*/
+        public long hamburger_id { get; set; }
         public int quantity { get; set; }
         public decimal total_price { get; set; }
         public string status { get; set; }
-        public int store_id { get; set; }/* FK*/
+        public long store_id { get; set; }/* FK*/
         public DateTime created_at { get; set; }
 
 
         public ModeloOrderAbout()
         {
             id = 0;
-            client_cc = string.Empty;
+            client_cc = 0;
             hamburger_id = 0;
             quantity = 0;
             total_price = 0;

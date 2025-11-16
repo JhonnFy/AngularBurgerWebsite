@@ -1,4 +1,5 @@
 
+
 CREATE DATABASE BurgerWeb
 GO
 
@@ -9,11 +10,11 @@ GO
 -- TABLA DE CLIENTES
 -- ===================================================
 CREATE TABLE clients (
-    cc VARCHAR(20) PRIMARY KEY,
+    cc BIGINT PRIMARY KEY,          
     name VARCHAR(100) NOT NULL,
     address VARCHAR(200),
-    phone1 VARCHAR(20),
-    phone2 VARCHAR(20),
+    phone1 BIGINT,
+    phone2 BIGINT,
     reference VARCHAR(200),
     payment_method VARCHAR(50)
 );
@@ -22,54 +23,50 @@ CREATE TABLE clients (
 -- TABLA DE TIENDAS (Contact)
 -- ===================================================
 CREATE TABLE contact (
-    id INT PRIMARY KEY,
+    id BIGINT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     address VARCHAR(200),
-    phone VARCHAR(20)
+    phone BIGINT
 );
 
 -- ===================================================
 -- HAMBURGUESAS POR CANAL
 -- ===================================================
--- Ventas físicas
 CREATE TABLE menuHamburger (
-    id INT PRIMARY KEY,
+    id BIGINT  PRIMARY KEY,
     name VARCHAR(50) NOT NULL
 );
 
--- Ventas domicilio
 CREATE TABLE aboutHamburger (
-    id INT PRIMARY KEY,
+    id BIGINT PRIMARY KEY,
     name VARCHAR(50) NOT NULL
 );
 
 -- ===================================================
 -- PEDIDOS
 -- ===================================================
--- Pedidos venta física
 CREATE TABLE order_menu (
-    id INT PRIMARY KEY,
-    client_cc VARCHAR(20) NOT NULL,
-    hamburger_id INT NOT NULL,
+    id BIGINT  PRIMARY KEY,
+    client_cc BIGINT NOT NULL,
+    hamburger_id BIGINT NOT NULL,
     quantity INT NOT NULL DEFAULT 1,
     total_price DECIMAL(10,2) NOT NULL,
     status VARCHAR(20) DEFAULT 'pending',
-    store_id INT NOT NULL,
+    store_id BIGINT NOT NULL,
     created_at DATETIME DEFAULT GETDATE(),
     FOREIGN KEY (client_cc) REFERENCES clients(cc),
     FOREIGN KEY (hamburger_id) REFERENCES menuHamburger(id),
     FOREIGN KEY (store_id) REFERENCES contact(id)
 );
 
--- Pedidos venta domicilio
 CREATE TABLE order_about (
-    id INT PRIMARY KEY,
-    client_cc VARCHAR(20) NOT NULL,
-    hamburger_id INT NOT NULL,
+    id BIGINT  PRIMARY KEY,
+    client_cc BIGINT NOT NULL,
+    hamburger_id BIGINT NOT NULL,
     quantity INT NOT NULL DEFAULT 1,
     total_price DECIMAL(10,2) NOT NULL,
     status VARCHAR(20) DEFAULT 'pending',
-    store_id INT NOT NULL,
+    store_id BIGINT NOT NULL,
     created_at DATETIME DEFAULT GETDATE(),
     FOREIGN KEY (client_cc) REFERENCES clients(cc),
     FOREIGN KEY (hamburger_id) REFERENCES aboutHamburger(id),
@@ -80,9 +77,9 @@ CREATE TABLE order_about (
 -- REVIEWS
 -- ===================================================
 CREATE TABLE review (
-    id INT PRIMARY KEY,
-    order_id INT NOT NULL,
-    order_type VARCHAR(20) NOT NULL, -- 'menu' o 'about'
+    id BIGINT PRIMARY KEY,
+    order_id BIGINT NOT NULL,
+    order_type VARCHAR(20) NOT NULL,
     comment VARCHAR(500),
     created_at DATETIME DEFAULT GETDATE()
 );
@@ -91,10 +88,10 @@ CREATE TABLE review (
 -- BLOGS (Reportes)
 -- ===================================================
 CREATE TABLE blogs (
-    id INT PRIMARY KEY,
-    order_id INT NOT NULL,
-    order_type VARCHAR(20) NOT NULL, -- 'menu' o 'about'
-    client_cc VARCHAR(20) NOT NULL,
+    id BIGINT  PRIMARY KEY,
+    order_id BIGINT NOT NULL,
+    order_type VARCHAR(20) NOT NULL,
+    client_cc BIGINT NOT NULL,
     hamburger_name VARCHAR(50) NOT NULL,
     quantity INT NOT NULL,
     total_price DECIMAL(10,2) NOT NULL,
@@ -103,6 +100,11 @@ CREATE TABLE blogs (
     status VARCHAR(20),
     created_at DATETIME DEFAULT GETDATE()
 );
+
+
+
+
+
 
 -- ===================================================
 -- INSERT DE DATOS INICIALES
