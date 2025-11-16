@@ -7,12 +7,7 @@ Aplicación desarrollada en .NET con arquitectura en capas (Data, Business, Cont
 ## Tabla de Contenidos
 
 1. [Interface](#Interface)  
-2. [Poblar Base De Datos Con PowerShell](#Poblar-Base-De-Datos-Con-PowerShell)  
-3. [Reglas de Negocio](#Reglas-De-Negocio)    
-4. [Arquitectura del Proyecto](#arquitectura-del-proyecto)  
-5. [Instalación y Configuración](#instalación-y-configuración)  
-6. [Tecnologías](#tecnologías)
-7. [Testing MSTest](#Testing-MSTest)  
+2. [DiagramaRelacional](#DiagramaRelacional)  
 ---
 
 ## Interface
@@ -98,6 +93,15 @@ Tabla de sedes / tiendas:
 
 > Cada pedido se asocia a una tienda específica.
 
+
+
+---
+
+
+
+## DiagramaRelacional
+
+<img width="1366" height="630" alt="image" src="https://github.com/user-attachments/assets/877bd216-20c6-43d9-8070-0d4820b388c4" />
 
 
 ---
