@@ -8,7 +8,7 @@ Aplicación desarrollada en .NET con arquitectura en capas (Data, Business, Cont
 
 1. [FlujoDePedidosClientes](#FlujoDePedidosClientes)  
 2. [DiagramaRelacional](#DiagramaRelacional)
-3. [OrdenIsert](#OrdenIsert)
+3. [OrdenInsert](#OrdenInsert)
 4. [Test](#Test)
 ---
 
@@ -105,7 +105,7 @@ Tabla de sedes / tiendas:
 
 ---
 
-## OrdenIsert
+## OrdenInsert
 
 1️⃣ contact  
 2️⃣ menuHamburger  
@@ -126,6 +126,7 @@ Tabla de sedes / tiendas:
 
 
 ---
+
 
 
 
