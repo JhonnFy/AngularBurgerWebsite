@@ -6,7 +6,21 @@ using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-    internal class ModeloReview
+    public class ModeloReview
     {
+        public int id { get; set; }
+        public int order_id { get; set; }
+        public string order_type { get; set; }
+        public string comment { get; set; }
+        public DateTime created_at { get; set; }
+
+        public ModeloReview()
+        {
+            id = 0;
+            order_id = 0;
+            order_type = string.Empty;
+            comment = string.Empty;
+            created_at = DateTime.Now;
+        }
     }
 }
