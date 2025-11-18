@@ -17,6 +17,54 @@ namespace CapaDatos
         private Conexion conexion = new Conexion();
 
 
+        public bool PostContac(ModeloContact newContac)
+        {
+            try
+            {
+                using var db = conexion.ObtenerCadenaDeConexion();
+                db.Open();
+
+
+                using (var checkId = new SqlCommand("SELECT * FROM contact WHERE id = @id", db))
+                {
+                    checkId.Parameters.AddWithValue("@id", newContac.id);
+                    if (checkId.ExecuteScalar() != null)
+                    {
+                        Debug.WriteLine("[****].[INFO].[CapaDatos].[CRUDcontact].[PostContac].[Contac Ya Registrado]");
+                        return false;
+                    }
+                }
+
+                string @Post =
+                    "INSERT INTO contact" +
+                    "(id, name, address, phone)" +
+                    "VALUES" +
+                    "(@id, @name, @address, @phone)";
+
+                using (SqlCommand runPost = new SqlCommand(Post, db))
+                {
+                    runPost.Parameters.AddWithValue("@id", newContac.id);
+                    runPost.Parameters.AddWithValue("@name", newContac.name);
+                    runPost.Parameters.AddWithValue("@address", newContac.address);
+                    runPost.Parameters.AddWithValue("@phone", newContac.phone);
+
+                    int RegistrosDb = runPost.ExecuteNonQuery();
+                    return RegistrosDb > 0;
+
+                }
+
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine("[****].[INFO].[CapaDatos].[CRUDcontact].[PostContac].[Contac NO Registrado]");
+                Console.WriteLine("[****].[INFO].[CapaDatos].[CRUDcontact].[PostContac].[Contac NO Registrado]");
+                throw new Exception("[****].[INFO].[CapaDatos].[CRUDcontact].[PostContac].[Contac NO Registrado] " + ex.Message);
+            }
+            
+        }
+
+
+
         public List<ModeloContact> GetContactsId(int id)
         {
             var ListaGetContactId = new List<ModeloContact>();
