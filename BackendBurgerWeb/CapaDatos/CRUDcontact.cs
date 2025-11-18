@@ -41,7 +41,7 @@ namespace CapaDatos
                             {
                                 var modelo = new ModeloContact
                                 {
-                                    id = runreadSelect.GetInt32(0),
+                                    id = runreadSelect.GetInt64(0),
                                     name = runreadSelect.GetString(1),
                                     address = runreadSelect.GetString(2),
                                     phone = runreadSelect.GetInt64(3)
