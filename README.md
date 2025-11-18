@@ -133,9 +133,13 @@ Tabla de sedes / tiendas:
   <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/b0593e81-a7e9-4954-990c-6bc423c19e5d" />
 </figure>
 
+<figure align="center">
+  <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/d693f522-169c-4bd6-8c6a-480b2a42d39b" />
+</figure>
 
 
 ---
+
 
 
 
