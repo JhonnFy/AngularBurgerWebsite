@@ -121,11 +121,13 @@ Tabla de sedes / tiendas:
 
 ## Test
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/2810f32d-8003-4f35-81d8-8110f14f3d28" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/e9a55b10-6229-4c36-abdf-ff52bf82acc1" />
 
 
 
 
 ---
+
 
 
 
