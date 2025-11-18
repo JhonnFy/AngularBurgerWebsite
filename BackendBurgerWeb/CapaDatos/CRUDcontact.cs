@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Net.WebSockets;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,48 @@ namespace CapaDatos
     {
 
         private Conexion conexion = new Conexion();
+
+        public bool DeleteContact(ModeloContact deleteContact)
+        {
+                using var db = conexion.ObtenerCadenaDeConexion();
+                db.Open();
+
+                string indiceOrderMenu_Contact = "SELECT COUNT(*) FROM order_about WHERE store_id = @id";
+                using (SqlCommand runIndice = new SqlCommand(indiceOrderMenu_Contact,db))
+                {
+                    try
+                    {
+                        runIndice.Parameters.AddWithValue("@id", deleteContact.id);
+                        int runIndiceCount = (int)runIndice.ExecuteScalar();
+                        if (runIndiceCount > 0)
+                        {
+                            Debug.WriteLine("[****].[INFO].[DeleteContact] No se puede eliminar, tiene " + runIndiceCount + " Asociados.");
+                            return false;
+                        }
+                        else
+                        {
+                            string @Delete =
+                            "DELETE FROM contact " +
+                            "WHERE id = @id";
+
+                            using (SqlCommand deleteSql = new SqlCommand(Delete, db))
+                            {
+                                deleteSql.Parameters.AddWithValue("@id", deleteContact.id);
+
+                                int FilasEliminadas = deleteSql.ExecuteNonQuery();
+                                return FilasEliminadas > 0;
+                            }
+                        }
+                    }
+                    catch (Exception ex )
+                    {
+                    Debug.WriteLine("[****].[ERROR].[Capa Datos].[DeleteContact] " + ex.Message);
+                    throw new Exception("ERROR [Capa Datos].[DeleteContact]" + ex.Message);
+                    }
+                }
+        }
+
+
 
         public bool PutContact(ModeloContact putContact)
         {
