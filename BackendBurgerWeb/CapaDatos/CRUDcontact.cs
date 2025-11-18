@@ -16,6 +16,40 @@ namespace CapaDatos
 
         private Conexion conexion = new Conexion();
 
+        public bool PutContact(ModeloContact putContact)
+        {
+            try
+            {
+                using var db = conexion.ObtenerCadenaDeConexion();
+                db.Open();
+
+                string @Put =
+                    "UPDATE contact " +
+                    "SET " +
+                    "name = @name," +
+                    "address = @address," +
+                    "phone = @phone " +
+                    "WHERE id = @id ";
+                    
+
+                using (SqlCommand runPut = new SqlCommand(Put, db))
+                {
+                    runPut.Parameters.AddWithValue("@id", putContact.id);
+                    runPut.Parameters.AddWithValue("@name", putContact.name);
+                    runPut.Parameters.AddWithValue("@address", putContact.address);
+                    runPut.Parameters.AddWithValue("@phone", putContact.phone);
+
+                    int RegistrosActualizado = runPut.ExecuteNonQuery();
+                    return RegistrosActualizado > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("[****].[ERROR].[CapaDatos].[CRUDcontact].[PutContact]" + ex.Message);
+                throw new Exception("ERROR [CapaDatos].[Update Estudinate].[PutContact]" + ex.Message);
+            }
+        }
+
 
         public bool PostContac(ModeloContact newContac)
         {
