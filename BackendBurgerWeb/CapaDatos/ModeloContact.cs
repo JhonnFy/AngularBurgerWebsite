@@ -13,9 +13,15 @@ namespace CapaDatos
         public string address { get; set; }
         public long phone { get; set; }
 
+        public ModeloContact(string name, string address, long phone)
+        {
+            this.name = name;
+            this.address = address;
+            this.phone = phone;
+        }
+
         public ModeloContact()
         {
-            id = 0;
             name = string.Empty;
             address = string.Empty;
             phone = 0;
