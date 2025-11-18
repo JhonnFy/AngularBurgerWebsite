@@ -16,9 +16,55 @@ namespace CapaDatos
 
         private Conexion conexion = new Conexion();
 
+
+        public List<ModeloContact> GetContactsId(int id)
+        {
+            var ListaGetContactId = new List<ModeloContact>();
+
+            try
+            {
+                using (var db = conexion.ObtenerCadenaDeConexion())
+                {
+                    db.Open();
+                    string @read =
+                        "SELECT * FROM contact " +
+                        "WHERE ID = @id";
+
+                    using (SqlCommand readSelect = new SqlCommand(read, db))
+                    {
+
+                        readSelect.Parameters.AddWithValue("@id", id);
+
+                        using (SqlDataReader runreadSelect = readSelect.ExecuteReader())
+                        {
+                            while (runreadSelect.Read())
+                            {
+                                var modelo = new ModeloContact
+                                {
+                                    id = runreadSelect.GetInt32(0),
+                                    name = runreadSelect.GetString(1),
+                                    address = runreadSelect.GetString(2),
+                                    phone = runreadSelect.GetInt64(3)
+                                };
+                                ListaGetContactId.Add(modelo);
+                            }
+
+                        }
+                    }
+                }
+            }catch(Exception ex)
+            {
+                Debug.WriteLine("[****].[ERROR].[CRUDcontact].[GetContactsId]" + ex.Message);
+                throw new Exception("[****].[ERROR].[CRUDcontact].[GetContactsId]" + ex.Message);
+            }
+
+            return ListaGetContactId;
+        }
+
+
         public List<ModeloContact> GetContacts()
         {
-            var ListaReadContact = new List<ModeloContact>();
+            var ListaGetContact = new List<ModeloContact>();
 
             try
             {
@@ -39,7 +85,7 @@ namespace CapaDatos
                                 address = runReadSelect.GetString(2),
                                 phone = runReadSelect.GetInt64(3)
                             };
-                            ListaReadContact.Add(modelo);
+                            ListaGetContact.Add(modelo);
                         }
                 }
             }
@@ -48,7 +94,7 @@ namespace CapaDatos
                 Debug.WriteLine("[****].[ERROR].[CRUDcontact].[GetContacts]" + ex.Message);
                 throw new Exception("[****].[ERROR].[CRUDcontact].[GetContacts]" + ex.Message);
             }
-            return ListaReadContact;
+            return ListaGetContact;
         }
     }
 }
