@@ -11,6 +11,7 @@ Aplicación desarrollada en .NET con arquitectura en capas (Data, Business, Cont
 3. [OrdenInsert](#OrdenInsert)
 4. [Test](#Test)
 5. [ReglasDeNegocio](#ReglasDeNegocio)
+6. [Docker](#Docker)
 ---
 
 ## FlujoDePedidosClientes
@@ -173,4 +174,9 @@ Tabla de sedes / tiendas:
 - Cada pedido debe estar vinculado a una tienda existente.
 - Validar que los datos de la tienda estén completos: nombre, dirección, teléfono.
 - Evitar eliminar tiendas si existen pedidos asociados.
+
+---
+
+## Docker
+
 
