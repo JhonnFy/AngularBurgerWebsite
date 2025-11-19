@@ -22,7 +22,7 @@ namespace CapaTesting.Testing_CapaDatos
             };
             CRUDmenuHamburger metodContact = new CRUDmenuHamburger();
 
-            bool runSql = metodContact.PostmenuHamburger(newMenu);
+            bool runSql = metodContact.PostMenuHamburger(newMenu);
             var menu = metodContact.GetMenuHamburgerId((int)newMenu.id);
             if (runSql &&  menu != null && menu.Any())
             {
