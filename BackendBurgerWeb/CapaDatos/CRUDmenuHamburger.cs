@@ -16,6 +16,47 @@ namespace CapaDatos
     {
         private Conexion conexion = new Conexion();
 
+        public bool DeleteMenuHamburger(ModeloMenuHamburger deleteMenu)
+        {
+            using var db = conexion.ObtenerCadenaDeConexion();
+            db.Open();
+
+            string OrderMenu_MenuHamburger = "SELECT COUNT(*) FROM order_menu WHERE hamburger_id =@id";
+            using (SqlCommand runSelectId = new SqlCommand(OrderMenu_MenuHamburger, db))
+            {
+                try
+                {
+                    runSelectId.Parameters.AddWithValue("@id", deleteMenu.id);
+                    int runSelectIdCount = (int)runSelectId.ExecuteScalar();
+                    if(runSelectIdCount > 0)
+                    {
+                        Debug.WriteLine("[****].[INFO].[DeleteMenuHamburger] No se puede eliminar, tiene " + runSelectIdCount + " Asociados  [Order_Menu].");
+                        return false;
+                    }
+                    else
+                    {
+                        string @Delete =
+                            "DELETE FROM menuHamburger " +
+                            "where id = @id";
+
+                        using (SqlCommand deleteSql = new SqlCommand(Delete, db))
+                        {
+                            deleteSql.Parameters.AddWithValue("@id", deleteMenu.id);
+
+                            int FilasEliminada = deleteSql.ExecuteNonQuery();
+                            return FilasEliminada > 0;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("[****].[ERROR].[Capa Datos].[DeleteMenuHamburger] " + ex.Message);
+                    throw new Exception("ERROR [Capa Datos].[DeleteMenuHamburger]" + ex.Message);
+                }
+            }
+        }
+
+
         public bool PutmenuHamburger(ModeloMenuHamburger putMenu)
         {
             
