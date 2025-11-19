@@ -16,6 +16,53 @@ namespace CapaDatos
     {
         private Conexion conexion = new Conexion();
 
+
+
+        public bool PostmenuHamburger(ModeloMenuHamburger newMenu)
+        {
+                using var db = conexion.ObtenerCadenaDeConexion();
+                db.Open();
+
+                string selectId = "SELECT COUNT(*) FROM menuHamburger WHERE id = @id";
+                using (SqlCommand runSelectId = new SqlCommand(selectId,db))
+                {
+                    try
+                    {
+                        runSelectId.Parameters.AddWithValue("@id", newMenu.id);
+                        int runSelectIdCount = (int)runSelectId.ExecuteScalar();
+                        if(runSelectIdCount > 0)
+                        {
+                            Debug.WriteLine("[****].[INFO].[PostmenuHamburger] No se puede Registrar, ya existe" + runSelectIdCount + " Asociados.");
+                            return false;
+                        }else
+                        {
+                        string @Post =
+                            "INSERT INTO menuHamburger " +
+                            "(id, name) " +
+                            "VALUES " +
+                            "(@id, @name)";
+
+                        using (SqlCommand runPost = new SqlCommand(Post, db))
+                            {
+                                runPost.Parameters.AddWithValue("@id", newMenu.id);
+                                runPost.Parameters.AddWithValue("@name", newMenu.name);
+
+                            int RegistrosDb = runPost.ExecuteNonQuery();
+                            return RegistrosDb > 0;
+                            }
+                        }
+                    }
+                catch(Exception ex)
+                    {
+                    Debug.WriteLine("[****].[INFO].[CapaDatos].[CRUDcontact].[PostmenuHamburger].[Menu NO Registrado]");
+                    Console.WriteLine("[****].[INFO].[CapaDatos].[CRUDcontact].[PostmenuHamburger].[Menu NO Registrado]");
+                    throw new Exception("[****].[INFO].[CapaDatos].[CRUDcontact].[PostmenuHamburger].[Menu NO Registrado] " + ex.Message);
+                }
+
+            }   
+        }
+
+
         public List<ModeloMenuHamburger> GetMenuHamburgerId(int id)
         {
             var ListaGetMenuHamburgerId = new List<ModeloMenuHamburger>();
