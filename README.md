@@ -150,9 +150,10 @@ Tabla de sedes / tiendas:
 
 ## ReglasDeNegocio
 
-Solo se puede registrar un cliente cuando hace un pedido.
-Validar que la cédula (CC) sea única por cliente.
-Validar que los campos obligatorios estén completos: nombre, dirección, teléfono principal.
-Normalizar el nombre: mayúsculas, quitar acentos si es requerido.
-Verificar formato de teléfonos y dirección.
+- Solo se puede registrar un cliente cuando hace un pedido.
+- Validar que la cédula (CC) sea única por cliente.
+- Validar que los campos obligatorios estén completos: nombre, dirección, teléfono principal.
+- Normalizar el nombre: mayúsculas, quitar acentos si es requerido.
+- Verificar formato de teléfonos y dirección.
+
 
