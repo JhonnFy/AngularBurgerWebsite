@@ -16,9 +16,52 @@ namespace CapaDatos
     {
         private Conexion conexion = new Conexion();
 
+        public bool PutmenuHamburger(ModeloMenuHamburger putMenu)
+        {
+            
+                using var db = conexion.ObtenerCadenaDeConexion();
+                db.Open();
+
+                string selectId = "SELECT COUNT(*) FROM menuHamburger WHERE id = @id";
+                using (SqlCommand runSelectId = new SqlCommand(selectId,db))
+                {
+                    try
+                    {
+
+                        runSelectId.Parameters.AddWithValue("@id", putMenu.id);
+                        int runSelectIdCount = ((int)runSelectId.ExecuteScalar());
+                        if (runSelectIdCount > 0)
+                        {
+                        string Put =
+                            "UPDATE menuHamburger " +
+                            "SET name = @name " +
+                            "WHERE id = @id";
+
+                        using (SqlCommand runPut = new SqlCommand(Put, db))
+                            {
+                                runPut.Parameters.AddWithValue("@id", putMenu.id);
+                                runPut.Parameters.AddWithValue("@name", putMenu.name);
+
+                                int RegistrosActualizados = runPut.ExecuteNonQuery();
+                                return RegistrosActualizados > 0;
+                            }
+                        }
+                        else
+                        {
+                            Debug.WriteLine("[****].[INFO].[PutmenuHamburger].[El Id, No Se Encuentra Registrado]");
+                            return false;
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        Debug.WriteLine("[****].[ERROR].[CapaDatos].[CRUDcontact].[PutContact]" + ex.Message);
+                        throw new Exception("ERROR [CapaDatos].[Update Estudinate].[PutContact]" + ex.Message);
+                    }
+                }
+        }
 
 
-        public bool PostmenuHamburger(ModeloMenuHamburger newMenu)
+        public bool PostMenuHamburger(ModeloMenuHamburger newMenu)
         {
                 using var db = conexion.ObtenerCadenaDeConexion();
                 db.Open();
