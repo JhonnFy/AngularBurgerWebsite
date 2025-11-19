@@ -153,7 +153,23 @@ Tabla de sedes / tiendas:
 - Solo se puede registrar un cliente cuando hace un pedido.
 - Validar que la cédula (CC) sea única por cliente.
 - Validar que los campos obligatorios estén completos: nombre, dirección, teléfono principal.
-- Normalizar el nombre: mayúsculas, quitar acentos si es requerido.
+- Normalizar el nombre: mayúsculas, quitar acentos.
 - Verificar formato de teléfonos y dirección.
 
+-Cada pedido debe tener un cliente registrado.
+-Cada pedido debe estar asociado a una tienda válida (Contact).
+-El estado inicial del pedido debe ser pending.
+-Validar que los productos pedidos existan en la tabla correspondiente (order_menu o order_about).
+-Evitar pedidos duplicados de la misma orden si ya se registró.
 
+- No se permite registrar clientes ni pedidos desde Home.
+- Cambiar estado a Entregado solo si estaba en EnDespacho.
+
+- Cada pedido registrado genera automáticamente un registro en Blogs.
+- Solo puede registrar información que provenga de pedidos reales.
+- Permitir filtrar por estado: cancelado, pendiente, despachado.
+- Mantener historial completo de ventas para estadísticas.
+
+- Cada pedido debe estar vinculado a una tienda existente.
+- Validar que los datos de la tienda estén completos: nombre, dirección, teléfono.
+- Evitar eliminar tiendas si existen pedidos asociados.
