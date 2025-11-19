@@ -24,10 +24,10 @@ namespace CapaTesting.Testing_CapaDatos
             {
                 ModeloContact newContact = new ModeloContact
                 {
-                    id = 4,
-                    name = "Test contact",
-                    address = "tc 16 av 10",
-                    phone = 3105447722
+                    id = 5,
+                    name = "Test contac 5",
+                    address = "Direccion 5",
+                    phone = 1111111111
                 };
 
                 CRUDcontact metodContact = new CRUDcontact();
@@ -35,7 +35,7 @@ namespace CapaTesting.Testing_CapaDatos
 
 
                 var contact = metodContact.GetContactsId((int)newContact.id);
-                if (contact != null  && contact.Any())
+                if (runSql &&  contact != null  && contact.Any())
                 {
                     Debug.WriteLine("[****].[OK].[Capa Testing].[La Creación Del Registro Fue Exitosa.]");
                     Debug.WriteLine($"Id: {contact.First().id}");
