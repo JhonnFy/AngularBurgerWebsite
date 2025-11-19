@@ -156,11 +156,11 @@ Tabla de sedes / tiendas:
 - Normalizar el nombre: mayúsculas, quitar acentos.
 - Verificar formato de teléfonos y dirección.
 
--Cada pedido debe tener un cliente registrado.
--Cada pedido debe estar asociado a una tienda válida (Contact).
--El estado inicial del pedido debe ser pending.
--Validar que los productos pedidos existan en la tabla correspondiente (order_menu o order_about).
--Evitar pedidos duplicados de la misma orden si ya se registró.
+- Cada pedido debe tener un cliente registrado.
+- Cada pedido debe estar asociado a una tienda válida (Contact).
+- El estado inicial del pedido debe ser pending.
+- Validar que los productos pedidos existan en la tabla correspondiente (order_menu o order_about).
+- Evitar pedidos duplicados de la misma orden si ya se registró.
 
 - No se permite registrar clientes ni pedidos desde Home.
 - Cambiar estado a Entregado solo si estaba en EnDespacho.
@@ -173,3 +173,4 @@ Tabla de sedes / tiendas:
 - Cada pedido debe estar vinculado a una tienda existente.
 - Validar que los datos de la tienda estén completos: nombre, dirección, teléfono.
 - Evitar eliminar tiendas si existen pedidos asociados.
+
