@@ -42,20 +42,6 @@ namespace CapaDatos
                                 phone = objSqlDataReader.GetInt64(3)
                             };
                             listaGetContact.Add(modeloContact);
-
-                            Debug.WriteLine($@"
-                                    Id: {modeloContact.id}
-                                    Name: {modeloContact.name}
-                                    Address: {modeloContact.address}
-                                    Phone: {modeloContact.phone}
-                            ");
-
-                            Console.WriteLine($@"
-                                    Id: {modeloContact.id}
-                                    Name: {modeloContact.name}
-                                    Address: {modeloContact.address}
-                                    Phone: {modeloContact.phone}
-                            ");
                         }
                     }
                 }
