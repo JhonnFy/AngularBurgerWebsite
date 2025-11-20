@@ -17,6 +17,51 @@ namespace CapaDatos
     {
         private Conexion conexion = new Conexion();
 
+
+        public List<ModeloContact> GetContactId(int id)
+        {
+            var listsGetContactId = new List<ModeloContact>();
+
+            try
+            {
+                using (var db = conexion.ObtenerCadenaDeConexion())
+                {
+                    db.Open();
+                    string @ReadId =
+                        "SELECT id, name, address, phone FROM contact " +
+                        "WHERE id = @id ";
+
+                    using (SqlCommand objSqlCommand = new SqlCommand(ReadId, db))
+                    {
+                        objSqlCommand.Parameters.AddWithValue("@id", id);
+
+                        using (SqlDataReader objSqlDataReader = objSqlCommand.ExecuteReader())
+                        {
+                            while (objSqlDataReader.Read())
+                            {
+                                var modelContactId = new ModeloContact
+                                {
+                                    id = objSqlDataReader.GetInt64(0),
+                                    name = objSqlDataReader.GetString(1),
+                                    address = objSqlDataReader.GetString(2),
+                                    phone = objSqlDataReader.GetInt64(3)
+                                };
+                                listsGetContactId.Add(modelContactId);
+                            }
+                        }
+                    }
+
+                }
+            }catch(Exception ex)
+            {
+                Debug.WriteLine("[CRUDcontact.GetContactIds] " + ex.Message);
+                throw new Exception("CRUDcontact.GetContactId] " + ex.Message);
+            }
+            return listsGetContactId;
+        }
+
+
+
         public List<ModeloContact> GetContact()
         {
             var listaGetContact = new List<ModeloContact>();
