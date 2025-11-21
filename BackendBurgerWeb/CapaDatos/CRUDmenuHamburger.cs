@@ -16,6 +16,49 @@ namespace CapaDatos
     {
         private Conexion conexion = new Conexion();
 
+
+        public List<ModeloMenuHamburger> GetMenuHamburgerId(int id)
+        {
+
+            var listaMenuHamburger = new List<ModeloMenuHamburger>();
+
+            try
+            {
+                using (var db = conexion.ObtenerCadenaDeConexion())
+                {
+                    db.Open();
+                    string @GetId =
+                        "SELECT id, name FROM menuHamburger " +
+                        "WHERE id = @id";
+
+                    using (SqlCommand objSqlCommand = new SqlCommand(GetId, db))
+                    {
+                        objSqlCommand.Parameters.AddWithValue("@id", id);
+
+                        using (SqlDataReader objSqlDataReader = objSqlCommand.ExecuteReader())
+                        {
+                            while (objSqlDataReader.Read())
+                            {
+                                var ModeloMenu = new ModeloMenuHamburger
+                                {
+                                    id = objSqlDataReader.GetInt64(0),
+                                    name = objSqlDataReader.GetString(1)
+                                };
+                                listaMenuHamburger.Add(ModeloMenu);
+                            }
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine("[****].[Error].[CRUDmenuHamburger.GetMenuHamburgerId] " + ex.Message);
+                throw new Exception("[****].[Error].[CRUDmenuHamburger.GetMenuHamburgerId] " + ex.Message);
+            }
+            return listaMenuHamburger;
+        }
+                
+
         public List<ModeloMenuHamburger> GetMenuHamburger()
         {
             var listMenuHamburger = new List<ModeloMenuHamburger>();
