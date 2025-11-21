@@ -49,31 +49,6 @@ namespace CapaDatos
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public bool PostMenuHamburger(ModeloMenuHamburger createMenu)
         {
             try
