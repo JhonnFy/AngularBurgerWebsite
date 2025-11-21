@@ -16,6 +16,36 @@ namespace CapaDatos
     {
         private Conexion conexion = new Conexion();
 
+        public bool PostMenuHamburger(ModeloMenuHamburger createMenu)
+        {
+            try
+            {
+                CRUDmenuHamburger objCrudMenu = new CRUDmenuHamburger();
+
+                using(var db = conexion.ObtenerCadenaDeConexion())
+                {
+                    db.Open();
+
+                    string @Post =
+                        "INSERT INTO menuHamburger (id, name)" +
+                        "VALUES (@id,@name) ";
+                    using (SqlCommand objSqlCommand = new SqlCommand(Post, db))
+                    {
+                        objSqlCommand.Parameters.AddWithValue("@id", createMenu.id);
+                        objSqlCommand.Parameters.AddWithValue("@name", createMenu.name);
+
+                        int RowsAffected = objSqlCommand.ExecuteNonQuery();
+                        return RowsAffected > 0;
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine("[****].[Error].[CRUDmenuHamburger.PostMenuHamburger] " + ex.Message);
+                throw new Exception("[****].[Error].[CRUDmenuHamburger.PostMenuHamburger] " + ex.Message);
+            }
+        }
+
 
         public List<ModeloMenuHamburger> GetMenuHamburgerId(int id)
         {
@@ -57,7 +87,7 @@ namespace CapaDatos
             }
             return listaMenuHamburger;
         }
-                
+
 
         public List<ModeloMenuHamburger> GetMenuHamburger()
         {
