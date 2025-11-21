@@ -17,12 +17,42 @@ namespace CapaDatos
     {
         private Conexion conexion = new Conexion();
 
-        public bool PostContact(ModeloContact newContact)
+
+        public bool PutContact(ModeloContact putNewContact)
         {
-            var listaPostContact = new List<ModeloContact>();
             try
             {
-                Conexion conexion = new Conexion();
+                var db = conexion.ObtenerCadenaDeConexion();
+                db.Open();
+
+                string @Put =
+                    "UPDATE contact SET " +
+                    "name = @name, address = @address, phone = @phone " +
+                    "WHERE id = @id ";
+
+                using (SqlCommand objSqlCommand = new SqlCommand(Put, db))
+                {
+                    objSqlCommand.Parameters.AddWithValue("@id", putNewContact.id);
+                    objSqlCommand.Parameters.AddWithValue("@name", putNewContact.name);
+                    objSqlCommand.Parameters.AddWithValue("@address", putNewContact.address);
+                    objSqlCommand.Parameters.AddWithValue("@phone", putNewContact.phone);
+
+                    int rowsAffected = objSqlCommand.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception ex )
+            {
+                Debug.WriteLine("[****].[ERROR].[CapaDatos].[PutContact]");
+                throw new Exception("[****].[ERROR].[CapaDatos].[PutContact] " + ex.Message);
+            }
+        }
+
+
+        public bool PostContact(ModeloContact newContact)
+        {
+            try
+            {
                 var db = conexion.ObtenerCadenaDeConexion();
                 db.Open();
 
