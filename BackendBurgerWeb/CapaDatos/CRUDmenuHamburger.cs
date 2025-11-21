@@ -17,12 +17,38 @@ namespace CapaDatos
         private Conexion conexion = new Conexion();
 
 
-        public bool PutMenuHamburger(ModeloMenuHamburger putHamburger)
+        public bool DeleteMenuHamburger(ModeloMenuHamburger deleteHamburger)
         {
             try
             {
-                CRUDmenuHamburger objCrudMenu = new CRUDmenuHamburger();
-                
+                using (var db = conexion.ObtenerCadenaDeConexion())
+                {
+                    db.Open();
+                    string  @Delete = 
+                        "DELETE FROM menuHamburger " +
+                        "WHERE id = @id ";
+
+                    using (SqlCommand objSqlCommand = new SqlCommand(Delete, db))
+                    {
+                        objSqlCommand.Parameters.AddWithValue("@id", deleteHamburger.id);
+
+                        var RowsAffect = objSqlCommand.ExecuteNonQuery();
+                        return RowsAffect > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("[****].[Error].[CRUDmenuHamburger.DeleteMenuHamburger] " + ex.Message);
+                throw new Exception("[****].[Error].[CRUDmenuHamburger.DeleteMenuHamburger] " + ex.Message);
+            }
+        }
+            
+            
+        public bool PutMenuHamburger(ModeloMenuHamburger putHamburger)
+        {
+            try
+            {   
                 using (var db = conexion.ObtenerCadenaDeConexion())
                 {
                     db.Open();
@@ -53,8 +79,6 @@ namespace CapaDatos
         {
             try
             {
-                CRUDmenuHamburger objCrudMenu = new CRUDmenuHamburger();
-
                 using(var db = conexion.ObtenerCadenaDeConexion())
                 {
                     db.Open();
