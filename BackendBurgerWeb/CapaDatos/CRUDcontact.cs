@@ -17,6 +17,37 @@ namespace CapaDatos
     {
         private Conexion conexion = new Conexion();
 
+        public bool PostContact(ModeloContact newContact)
+        {
+            var listaPostContact = new List<ModeloContact>();
+            try
+            {
+                Conexion conexion = new Conexion();
+                var db = conexion.ObtenerCadenaDeConexion();
+                db.Open();
+
+                string @Post =
+                    "INSERT INTO contact (id,name, address, phone) " +
+                    "VALUES  (@id,@name,@address,@phone)";
+
+                using (SqlCommand createContact = new SqlCommand(Post, db))
+                {
+                    createContact.Parameters.AddWithValue("@id", newContact.id);
+                    createContact.Parameters.AddWithValue("@name", newContact.name);
+                    createContact.Parameters.AddWithValue("@address", newContact.address);
+                    createContact.Parameters.AddWithValue("@phone", newContact.phone);
+
+                    int rowsAffected = createContact.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine("[****].[ERROR].[CapaDatos].[PostContact]");
+                throw new Exception("[****].[ERROR].[CapaDatos].[PostContact] " + ex.Message);
+            }
+        }
+
 
         public List<ModeloContact> GetContactId(int id)
         {
@@ -59,7 +90,6 @@ namespace CapaDatos
             }
             return listsGetContactId;
         }
-
 
 
         public List<ModeloContact> GetContact()
