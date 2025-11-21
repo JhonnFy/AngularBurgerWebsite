@@ -16,6 +16,64 @@ namespace CapaDatos
     {
         private Conexion conexion = new Conexion();
 
+
+        public bool PutMenuHamburger(ModeloMenuHamburger putHamburger)
+        {
+            try
+            {
+                CRUDmenuHamburger objCrudMenu = new CRUDmenuHamburger();
+                
+                using (var db = conexion.ObtenerCadenaDeConexion())
+                {
+                    db.Open();
+                    string @Put =
+                            "UPDATE menuHamburger " +
+                            "SET name = @name " +
+                            "WHERE id = @id ";
+
+                    using (SqlCommand objSqlCommand = new SqlCommand(Put,db))
+                    {
+                        objSqlCommand.Parameters.AddWithValue("@id", putHamburger.id);
+                        objSqlCommand.Parameters.AddWithValue("@name", putHamburger.name);
+
+                        int RowsAffected = objSqlCommand.ExecuteNonQuery();
+                        return RowsAffected > 0;
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine("[****].[Error].[CRUDmenuHamburger.PutMenuHamburger] " + ex.Message);
+                throw new Exception("[****].[Error].[CRUDmenuHamburger.PutMenuHamburger] " + ex.Message);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public bool PostMenuHamburger(ModeloMenuHamburger createMenu)
         {
             try
