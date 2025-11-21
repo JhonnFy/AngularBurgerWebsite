@@ -17,6 +17,31 @@ namespace CapaDatos
     {
         private Conexion conexion = new Conexion();
 
+        public bool DeleteContact(int id)
+        {
+            try
+            {
+                var db = conexion.ObtenerCadenaDeConexion();
+                db.Open();
+
+                string @Delete =
+                    "DELETE FROM contact " +
+                    "WHERE id = @id ";
+
+                using (SqlCommand objSqlCommand = new SqlCommand(Delete, db))
+                {
+                    objSqlCommand.Parameters.AddWithValue("@id", id);
+
+                    int rowsAffected = objSqlCommand.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("[****].[ERROR].[CapaDatos].[DeleteContact]");
+                throw new Exception("[****].[ERROR].[CapaDatos].[DeleteContact] " + ex.Message);
+            }
+        }
 
         public bool PutContact(ModeloContact putNewContact)
         {
