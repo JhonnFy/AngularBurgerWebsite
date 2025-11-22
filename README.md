@@ -1,4 +1,4 @@
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/e0b4ef4c-57e4-40c5-bf1a-6de32b6dd5dd" /># AngularNetAppi
+# AngularNetAppi
 
 Aplicación desarrollada en .NET con arquitectura en capas (Data, Business, Controller, Interface)
 
@@ -160,6 +160,15 @@ Tabla de sedes / tiendas:
   <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/d62c80fb-c46a-4f26-b09a-298dca729c9e" />
 </figure>
 
+<figure align="center">
+  <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/e0b4ef4c-57e4-40c5-bf1a-6de32b6dd5dd" />
+</figure>
+
+<figure align="center">
+  <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/aa50c4cd-667b-43ef-92d4-a930f560a926" />
+</figure>
+
+
 ---
 
 ## ReglasDeNegocio
@@ -189,6 +198,7 @@ Tabla de sedes / tiendas:
 - Evitar eliminar tiendas si existen pedidos asociados.
 
 ---
+
 
 
 
