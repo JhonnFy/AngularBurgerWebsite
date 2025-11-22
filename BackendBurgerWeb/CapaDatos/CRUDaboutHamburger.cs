@@ -11,6 +11,71 @@ namespace CapaDatos
     {
         Conexion conexion = new Conexion();
 
+        public List<ModeloAboutHamburger> GetAboutHamburgerId(int id)
+        {
+            var listModeloAbout = new List<ModeloAboutHamburger>();
+            try
+            {
+                using (var db = conexion.ObtenerCadenaDeConexion())
+                {
+                    db.Open();
+                    string @GetId =
+                        "SELECT id, name FROM aboutHamburger " +
+                        "WHERE id = @id";
+                    using (SqlCommand objSql = new SqlCommand(GetId, db))
+                    {
+                        objSql.Parameters.AddWithValue("@id", id);
+
+                        using (SqlDataReader objData = objSql.ExecuteReader())
+                        {
+                            while (objData.Read())
+                            {
+                                var modeloAbout = new ModeloAboutHamburger
+                                {
+                                    id = objData.GetInt64(0),
+                                    name = objData.GetString(1)
+                                };
+                                listModeloAbout.Add(modeloAbout);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener los datos de AboutHamburger por ID: " + ex.Message);
+            }
+            return listModeloAbout;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public List<ModeloAboutHamburger> GetAboutHamburger()
         {
             var listaModeloAbout = new List<ModeloAboutHamburger>();
