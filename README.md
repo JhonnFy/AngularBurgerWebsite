@@ -153,6 +153,10 @@ Tabla de sedes / tiendas:
   <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/fccf81b6-421c-457d-81d8-5156f1c5c865" />
 </figure>
 
+<figure align="center">
+  <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/b2a9d75d-13e5-4bac-bfb1-80b0f1704258" />
+</figure>
+
 ---
 
 ## ReglasDeNegocio
@@ -184,6 +188,7 @@ Tabla de sedes / tiendas:
 ---
 
 ## Docker
+
 
 
 
