@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,36 @@ namespace CapaDatos
     public class CRUDaboutHamburger
     {
         Conexion conexion = new Conexion();
+
+        public bool PostAboutHamburger(ModeloAboutHamburger newAboutMenu)
+        {
+            try
+            {
+                using (var db = conexion.ObtenerCadenaDeConexion())
+                {
+                    db.Open();
+                    string @Post =
+                        "INSERT INTO aboutHamburger (id, name)" +
+                        "VALUES (@id, @name) ";
+                    using (SqlCommand createAboutMenu = new SqlCommand(Post, db))
+                    {
+                        createAboutMenu.Parameters.AddWithValue("@id", newAboutMenu.id);
+                        createAboutMenu.Parameters.AddWithValue("@name", newAboutMenu.name);
+                        
+                        int CreateRows = createAboutMenu.ExecuteNonQuery();
+                        return CreateRows > 0;
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine("[****].[ERROR].[CapaDatos].[PostContact]");
+                throw new Exception("[****].[ERROR].[CapaDatos].[PostContact] " + ex.Message);
+            }
+        }
+        
+
+
 
         public List<ModeloAboutHamburger> GetAboutHamburgerId(int id)
         {
@@ -47,35 +78,8 @@ namespace CapaDatos
             }
             return listModeloAbout;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
+        
         public List<ModeloAboutHamburger> GetAboutHamburger()
         {
             var listaModeloAbout = new List<ModeloAboutHamburger>();
