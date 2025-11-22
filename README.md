@@ -120,7 +120,6 @@ Tabla de sedes / tiendas:
 
 ---
 
-
 ## Test
 <figure align="center">
   <img width="1364" height="778" alt="image" src="https://github.com/user-attachments/assets/8aea4f83-ad35-493f-9c40-a1d370400111" />
@@ -144,6 +143,10 @@ Tabla de sedes / tiendas:
 
 <figure align="center">
   <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/51aba56d-776f-43f2-80b4-a12fd0f6fdcc" />
+</figure>
+
+<figure align="center">
+  <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/dbae1b5d-ef1f-40cf-90ba-38a190ad9974" />
 </figure>
 
 ---
@@ -177,6 +180,7 @@ Tabla de sedes / tiendas:
 ---
 
 ## Docker
+
 
 
 
