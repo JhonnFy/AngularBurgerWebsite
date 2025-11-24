@@ -11,7 +11,66 @@ namespace CapaDatos
     public class CRUDclients
     {
         private Conexion conexion = new Conexion();
-        
+      
+        public List<ModeloClients> GetClientsId(int id)
+        {
+            var listGetClientsId = new List<ModeloClients>();
+
+            try
+            {
+                using (var db = conexion.ObtenerCadenaDeConexion())
+                {
+                    db.Open();
+                    string @GetId =
+                        "SELECT cc,name,address,phone1,phone2,reference,payment_method FROM clients " +
+                        "WHERE cc = @id ";
+
+                    using (SqlCommand objSqlCommand = new SqlCommand(GetId, db))
+                    {
+                        objSqlCommand.Parameters.AddWithValue("@id",id);
+
+                        using (SqlDataReader  runSql = objSqlCommand.ExecuteReader())
+                        {
+                            while (runSql.Read())
+                            {
+                                var ModeloId = new ModeloClients
+                                {
+                                    cc = runSql.GetInt64(0),
+                                    name = runSql.GetString(1),
+                                    address = runSql.GetString(2),
+                                    phone1 = runSql.GetInt64(3),
+                                    phone2 = runSql.GetInt64(4),
+                                    reference = runSql.GetString(5),
+                                    payment_method = runSql.GetString(6)
+                                };
+                                listGetClientsId.Add(ModeloId);
+                            }
+                        }
+                    }
+                }
+
+            }catch (Exception ex)
+            {
+                Debug.Write(ex.Message);
+                Console.WriteLine(ex.Message);
+            }
+            return listGetClientsId;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public List<ModeloClients> GetClients()
         {
