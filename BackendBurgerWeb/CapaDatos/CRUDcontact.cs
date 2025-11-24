@@ -73,7 +73,6 @@ namespace CapaDatos
             }
         }
 
-
         public bool PostContact(ModeloContact newContact)
         {
             try
@@ -102,8 +101,6 @@ namespace CapaDatos
                 throw new Exception("[****].[ERROR].[CapaDatos].[PostContact] " + ex.Message);
             }
         }
-
-
         public List<ModeloContact> GetContactId(int id)
         {
             var listsGetContactId = new List<ModeloContact>();
@@ -145,7 +142,6 @@ namespace CapaDatos
             }
             return listsGetContactId;
         }
-
 
         public List<ModeloContact> GetContact()
         {

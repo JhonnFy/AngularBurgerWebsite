@@ -41,24 +41,6 @@ namespace CapaDatos
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public bool PutAboutHamburger(ModeloAboutHamburger PutHamburger)
         {
             try
@@ -89,7 +71,6 @@ namespace CapaDatos
             }
         }
         
-
         public bool PostAboutHamburger(ModeloAboutHamburger newAboutMenu)
         {
             try
@@ -117,7 +98,6 @@ namespace CapaDatos
             }
         }
         
-
         public List<ModeloAboutHamburger> GetAboutHamburgerId(int id)
         {
             var listModeloAbout = new List<ModeloAboutHamburger>();
@@ -154,8 +134,7 @@ namespace CapaDatos
             }
             return listModeloAbout;
         }
-        
-        
+               
         public List<ModeloAboutHamburger> GetAboutHamburger()
         {
             var listaModeloAbout = new List<ModeloAboutHamburger>();

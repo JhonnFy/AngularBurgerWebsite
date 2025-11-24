@@ -15,8 +15,6 @@ namespace CapaDatos
     public class CRUDmenuHamburger
     {
         private Conexion conexion = new Conexion();
-
-
         public bool DeleteMenuHamburger(ModeloMenuHamburger deleteHamburger)
         {
             try
@@ -42,9 +40,7 @@ namespace CapaDatos
                 Debug.WriteLine("[****].[Error].[CRUDmenuHamburger.DeleteMenuHamburger] " + ex.Message);
                 throw new Exception("[****].[Error].[CRUDmenuHamburger.DeleteMenuHamburger] " + ex.Message);
             }
-        }
-            
-            
+        }   
         public bool PutMenuHamburger(ModeloMenuHamburger putHamburger)
         {
             try
@@ -73,8 +69,6 @@ namespace CapaDatos
                 throw new Exception("[****].[Error].[CRUDmenuHamburger.PutMenuHamburger] " + ex.Message);
             }
         }
-
-
         public bool PostMenuHamburger(ModeloMenuHamburger createMenu)
         {
             try
@@ -102,8 +96,6 @@ namespace CapaDatos
                 throw new Exception("[****].[Error].[CRUDmenuHamburger.PostMenuHamburger] " + ex.Message);
             }
         }
-
-
         public List<ModeloMenuHamburger> GetMenuHamburgerId(int id)
         {
 
@@ -144,8 +136,6 @@ namespace CapaDatos
             }
             return listaMenuHamburger;
         }
-
-
         public List<ModeloMenuHamburger> GetMenuHamburger()
         {
             var listMenuHamburger = new List<ModeloMenuHamburger>();
