@@ -108,9 +108,9 @@ Tabla de sedes / tiendas:
 
 ## OrdenInsert
 
-1️⃣ contact✅
-2️⃣ menuHamburger✅  
-3️⃣ aboutHamburger✅  
+1️⃣ contact » 
+2️⃣ menuHamburger »
+3️⃣ aboutHamburger »  
 4️⃣ clients  
 5️⃣ order_menu  
 6️⃣ order_about  
@@ -213,6 +213,7 @@ Tabla de sedes / tiendas:
 - Evitar eliminar tiendas si existen pedidos asociados.
 
 ---
+
 
 
 
