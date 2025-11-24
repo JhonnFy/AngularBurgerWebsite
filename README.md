@@ -1,7 +1,7 @@
 # AngularNetAppi
 
 Aplicación desarrollada en .NET con arquitectura en capas (Data, Business, Controller, Interface)
-
+   
 ---
 
 ## Tabla de Contenidos
@@ -198,6 +198,7 @@ Tabla de sedes / tiendas:
 - Evitar eliminar tiendas si existen pedidos asociados.
 
 ---
+
 
 
 
