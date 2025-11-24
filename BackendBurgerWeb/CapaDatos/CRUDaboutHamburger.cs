@@ -72,8 +72,6 @@ namespace CapaDatos
         }
         
 
-
-
         public List<ModeloAboutHamburger> GetAboutHamburgerId(int id)
         {
             var listModeloAbout = new List<ModeloAboutHamburger>();
