@@ -36,8 +36,8 @@ namespace CapaIgu
                 }
                 catch(Exception ex)
                 {
-                    Debug.WriteLine("[----CapaIgu----].[ERROR].[No Se Conecta A dbBurgerWeb].[cs Vacia]");
-                    Console.WriteLine("[----CapaIgu----].[ERROR].[No Se Conecta A dbBurgerWeb].[cs Vacia]");
+                    Debug.WriteLine("[----CapaIgu----].[ERROR].[No Se Conecta A dbBurgerWeb].[cs Vacia]" + ex.Message);
+                    Console.WriteLine("[----CapaIgu----].[ERROR].[No Se Conecta A dbBurgerWeb].[cs Vacia]" + ex.Message);
                 }
             }
 

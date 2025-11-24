@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,6 +12,37 @@ namespace CapaDatos
     public class CRUDaboutHamburger
     {
         Conexion conexion = new Conexion();
+
+        public bool PutAboutHamburger(ModeloAboutHamburger PutHamburger)
+        {
+            try
+            {
+                using (var db = conexion.ObtenerCadenaDeConexion())
+                {
+                    db.Open();
+                    string @Put =
+                        "UPDATE aboutHamburger " +
+                        "SET name = @name " +
+                        "WHERE id = @id ";
+
+                    using (SqlCommand objSql = new SqlCommand(Put, db))
+                    {
+                        objSql.Parameters.AddWithValue("@id", PutHamburger.id);
+                        objSql.Parameters.AddWithValue("@name",PutHamburger.name);
+
+                        int RunPut = objSql.ExecuteNonQuery();
+                        return RunPut > 0;
+
+                    }
+                }
+            }
+            catch(Exception ex) 
+            {
+                Debug.WriteLine("[****].[ERROR].[CapaDatos].[PostContact]");
+                throw new Exception("[****].[ERROR].[CapaDatos].[PostContact] " + ex.Message);
+            }
+        }
+        
 
         public bool PostAboutHamburger(ModeloAboutHamburger newAboutMenu)
         {
