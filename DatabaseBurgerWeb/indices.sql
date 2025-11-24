@@ -14,6 +14,11 @@ CREATE INDEX OrderAbout_Contact ON order_about(store_id)
 -- ===================================================
 CREATE INDEX OrderMenu_MenuHamburger ON order_menu(hamburger_id)
 
+-- ===================================================
+-- INDICE(OrderAbout_aboutHamburger)
+-- ===================================================
+CREATE INDEX OrderAbout_aboutHamburger on order_about(hamburger_id)
+
 SELECT *
 FROM order_menu
 WHERE hamburger_id = 123;
