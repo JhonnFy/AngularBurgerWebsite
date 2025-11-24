@@ -5,7 +5,7 @@ Aplicación desarrollada en .NET con arquitectura en capas (Data, Business, Cont
 ---
 
 ## Tabla de Contenidos
-
+    
 1. [FlujoDePedidosClientes](#FlujoDePedidosClientes)  
 2. [DiagramaRelacional](#DiagramaRelacional)
 3. [OrdenInsert](#OrdenInsert)
@@ -198,6 +198,7 @@ Tabla de sedes / tiendas:
 - Evitar eliminar tiendas si existen pedidos asociados.
 
 ---
+
 
 
 
