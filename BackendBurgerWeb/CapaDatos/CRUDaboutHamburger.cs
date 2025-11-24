@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.AccessControl;
+using System.Security.Cryptography.Pkcs;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +14,50 @@ namespace CapaDatos
     public class CRUDaboutHamburger
     {
         Conexion conexion = new Conexion();
+
+        public bool DeleteAboutHamburger(ModeloAboutHamburger DeleteAbout)
+        {
+            try
+            {
+                using (var db = conexion.ObtenerCadenaDeConexion())
+                {
+                    db.Open();
+                    string @Delete =
+                        "DELETE FROM aboutHamburger " +
+                        "WHERE id = @id ";
+                    using (SqlCommand objSqlComman = new SqlCommand(Delete, db))
+                    {
+                        objSqlComman.Parameters.AddWithValue("@id", DeleteAbout.id);
+
+                        int RunDelete = objSqlComman.ExecuteNonQuery();
+                        return RunDelete > 0;
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine("[****].[ERROR].[CapaDatos].[DeleteAboutHamburger]");
+                throw new Exception("[****].[ERROR].[CapaDatos].[DeleteAboutHamburger] " + ex.Message);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public bool PutAboutHamburger(ModeloAboutHamburger PutHamburger)
         {
