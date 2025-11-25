@@ -12,7 +12,40 @@ namespace CapaDatos
     public class CRUDclients
     {
         private Conexion conexion = new Conexion();
-      
+
+        public bool DeleteClients(int cc)
+        {
+            using (var db = conexion.ObtenerCadenaDeConexion())
+            {
+                db.Open();
+                using (SqlCommand objSqlCommand = new SqlCommand("DeleteClients", db))
+                {
+                    objSqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                    objSqlCommand.Parameters.AddWithValue("@cc", cc);
+
+                    int RowsAffect = objSqlCommand.ExecuteNonQuery();
+                    return RowsAffect > 0;
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public bool PutClients(ModeloClients putClients)
         {
             using (var db = conexion.ObtenerCadenaDeConexion())

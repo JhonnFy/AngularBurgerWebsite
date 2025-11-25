@@ -73,6 +73,17 @@ SET NOCOUNT ON;
 END
 GO
 
+-- ===================================================
+-- Sp(DeleteClients)
+-- ===================================================
+CREATE PROCEDURE DeleteClients
+	@Cc BIGINT
+AS
+BEGIN
+	DELETE FROM clients
+	WHERE cc = @Cc
+END
+GO
 
 
 Execute.GetClients
