@@ -197,6 +197,9 @@ Tabla de sedes / tiendas:
    <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/3a5bbccd-d0d8-419c-b360-8f3e9735371a" />
 </figure>
 
+<figure align="center">
+   <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/1e9778b7-da8f-43cf-a1e0-94764eede9b0" />
+</figure>
 
 ---
 
@@ -227,6 +230,7 @@ Tabla de sedes / tiendas:
 - Evitar eliminar tiendas si existen pedidos asociados.
 
 ---
+
 
 
 
