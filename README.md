@@ -184,6 +184,10 @@ Tabla de sedes / tiendas:
    <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/2c9c5633-42c9-4fed-9473-0a1d0d613fba" />
 </figure>
 
+<figure align="center">
+   <img width="1364" height="1000" alt="image" src="https://github.com/user-attachments/assets/5dbb4d55-63b9-4621-8db3-3913cf02cddd" />
+</figure>
+
 ---
 
 ## ReglasDeNegocio
@@ -213,6 +217,7 @@ Tabla de sedes / tiendas:
 - Evitar eliminar tiendas si existen pedidos asociados.
 
 ---
+
 
 
 
