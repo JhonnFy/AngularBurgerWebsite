@@ -8,7 +8,6 @@ BEGIN
 SELECT cc,name,address,phone1,phone2,reference,payment_method FROM clients  
 END 
 GO
-
 -- ===================================================
 -- Sp(GetClientsId)
 -- ===================================================
@@ -20,7 +19,6 @@ BEGIN
 	WHERE cc = @cc
 END
 GO
-
 -- ===================================================
 -- Sp(PostClients)
 -- ===================================================
@@ -34,7 +32,6 @@ BEGIN
 	(@cc,@name,@address,@phone1,@phone2,@reference,@payment_method);
 END
 GO
-
 -- ===================================================
 -- Sp(PutClients)
 -- ===================================================
@@ -72,7 +69,6 @@ SET NOCOUNT ON;
 	END
 END
 GO
-
 -- ===================================================
 -- Sp(DeleteClients)
 -- ===================================================
@@ -85,6 +81,44 @@ BEGIN
 END
 GO
 
+-- ===================================================
+-- Sp(GetOrderAbout)
+-- ===================================================
+CREATE PROCEDURE GetOrderAbout
+AS
+BEGIN
+	SELECT id, client_cc, hamburger_id, quantity, total_price, status, store_id, created_at FROM order_about
+END
+GO
+-- ===================================================
+-- Sp(GetOrderAboutId)
+-- ===================================================
+CREATE PROCEDURE GetOrderAboutId
+	@id BIGINT
+AS
+BEGIN
+	SELECT id, client_cc, hamburger_id, quantity, total_price, status, store_id, created_at FROM order_about
+	WHERE id = @id
+END
+GO
+-- ===================================================
+-- Sp(PostOrderAbout)
+-- ===================================================
+CREATE PROCEDURE PostOrderAbout
+	@id BIGINT,
+	@client_cc BIGINT,
+	@hamburger_id BIGINT,
+	@quantity BIGINT,
+	@total_price DECIMAL,
+	@status VARCHAR(100),
+	@store_id BIGINT
+AS
+BEGIN
+	INSERT INTO order_about 
+	(id,client_cc,hamburger_id,quantity,total_price,status,store_id,created_at) VALUES
+	(@id,@client_cc,@hamburger_id,@quantity,@total_price,@status,@store_id,GETDATE())
+END
+GO
 
 Execute.GetClients
 Execute.GetClientsId @cc=1;
@@ -93,3 +127,5 @@ EXECUTE.PutClients @Accion = 'PutAllClients', @cc=1,
 @name = 'Update Name', @address = 'Update Address', @phone1 = 1, @phone2 = 2, 
 @reference = 'Update Reference', @payment_method = 'Method Update';
 
+
+EXECUTE GetOrderAbout

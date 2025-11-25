@@ -72,23 +72,23 @@ CREATE TABLE order_about (
     FOREIGN KEY (hamburger_id) REFERENCES aboutHamburger(id),
     FOREIGN KEY (store_id) REFERENCES contact(id)
 );
-
+  
 -- ===================================================
 -- REVIEWS
 -- ===================================================
 CREATE TABLE review (
-    id BIGINT PRIMARY KEY,
+    id BIGINT IDENTITY(1,1) PRIMARY KEY,
     order_id BIGINT NOT NULL,
     order_type VARCHAR(20) NOT NULL,
     comment VARCHAR(500),
     created_at DATETIME DEFAULT GETDATE()
 );
-
+   
 -- ===================================================
 -- BLOGS (Reportes)
 -- ===================================================
 CREATE TABLE blogs (
-    id BIGINT  PRIMARY KEY,
+	id BIGINT IDENTITY(1,1) PRIMARY KEY,
     order_id BIGINT NOT NULL,
     order_type VARCHAR(20) NOT NULL,
     client_cc BIGINT NOT NULL,
