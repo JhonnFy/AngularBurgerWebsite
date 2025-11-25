@@ -15,36 +15,27 @@ namespace CapaDatos
 
         public bool DeleteClients(int cc)
         {
-            using (var db = conexion.ObtenerCadenaDeConexion())
+            try
             {
-                db.Open();
-                using (SqlCommand objSqlCommand = new SqlCommand("DeleteClients", db))
+                using (var db = conexion.ObtenerCadenaDeConexion())
                 {
-                    objSqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                    objSqlCommand.Parameters.AddWithValue("@cc", cc);
-
-                    int RowsAffect = objSqlCommand.ExecuteNonQuery();
-                    return RowsAffect > 0;
+                    db.Open();
+                    using (SqlCommand objSqlCommand = new SqlCommand("DeleteClients", db))
+                    {
+                        objSqlCommand.Parameters.AddWithValue("@cc", cc);
+                        objSqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                        
+                        int RowsAffect = objSqlCommand.ExecuteNonQuery();
+                        return RowsAffect > 0;
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("[****].[Error Class].[CRUDClients.DeleteClients] " + ex.Message);
+                throw new Exception("[****].[Error Class].[CRUDClients.DeleteClients] " + ex.Message);
+            }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         public bool PutClients(ModeloClients putClients)
         {
@@ -73,8 +64,8 @@ namespace CapaDatos
                 }
                 catch(Exception ex)
                 {
-                    Debug.WriteLine("[CRUDClients.PutClients] " + ex.Message);
-                    throw new Exception("[CRUDClients.PutClients] " + ex.Message);
+                    Debug.WriteLine("[****].[Error Class].[CRUDClients.PutClients] " + ex.Message);
+                    throw new Exception("[****].[Error Class].[CRUDClients.PutClients] " + ex.Message);
                 }
             }
         }
@@ -105,8 +96,8 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("[CRUDClients.PostClients] " + ex.Message);
-                throw new Exception("[CRUDClients.PostClients] " + ex.Message);
+                Debug.WriteLine("[****].[Error Class].[CRUDClients.PostClients] " + ex.Message);
+                throw new Exception("[****].[Error Class].[CRUDClients.PostClients] " + ex.Message);
             }
         }
 
@@ -147,12 +138,12 @@ namespace CapaDatos
 
             }catch (Exception ex)
             {
-                Debug.Write(ex.Message);
-                Console.WriteLine(ex.Message);
+                Debug.WriteLine("[****].[Error Class].[CRUDClients.GetClientsId] " + ex.Message);
+                throw new Exception("[****].[Error Class].[CRUDClients.GetClientsId] " + ex.Message);
             }
             return listGetClientsId;
         }
-        
+
         public List<ModeloClients> GetClients()
         {
             var listClients = new List<ModeloClients>();
@@ -186,11 +177,10 @@ namespace CapaDatos
             }
             catch(Exception ex)
             {
-                Debug.WriteLine("[CRUDClients.GetClients] " + ex.Message);
-                throw new Exception("[CRUDClients.GetClients] " + ex.Message);
+                Debug.WriteLine("[****].[Error Class].[CRUDClients.GetClients] " + ex.Message);
+                throw new Exception("[****].[Error Class].[CRUDClients.GetClients] " + ex.Message);
             }
             return listClients;
         }
-
     }
 }
