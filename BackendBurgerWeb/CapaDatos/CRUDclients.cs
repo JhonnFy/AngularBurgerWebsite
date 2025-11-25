@@ -20,9 +20,10 @@ namespace CapaDatos
                 try
                 {
                     db.Open();
-                    using (SqlCommand objSqlCommand = new SqlCommand("PutClientsName", db))
+                    using (SqlCommand objSqlCommand = new SqlCommand("PutClients", db))
                     {
                         objSqlCommand.Parameters.AddWithValue("@Accion", "PutAllClients");
+                        objSqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
                         objSqlCommand.Parameters.AddWithValue("@cc", putClients.cc);
                         objSqlCommand.Parameters.AddWithValue("@name", putClients.name);
@@ -44,32 +45,6 @@ namespace CapaDatos
                 }
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         public bool PostClients(ModeloClients PostClients)
         {
