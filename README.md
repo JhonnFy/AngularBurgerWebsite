@@ -112,7 +112,7 @@ Tabla de sedes / tiendas:
 1️⃣ contact » 
 2️⃣ menuHamburger »
 3️⃣ aboutHamburger »  
-4️⃣ clients  
+4️⃣ clients » 
 5️⃣ order_menu  
 6️⃣ order_about  
 7️⃣ review
@@ -233,6 +233,7 @@ Tabla de sedes / tiendas:
 - Evitar eliminar tiendas si existen pedidos asociados.
 
 ---
+
 
 
 
