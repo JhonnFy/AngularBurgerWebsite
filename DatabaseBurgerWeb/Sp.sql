@@ -35,8 +35,50 @@ BEGIN
 END
 GO
 
+-- ===================================================
+-- Sp(PutClients)
+-- ===================================================
+CREATE PROCEDURE PutClients
+	@Accion VARCHAR(100),
+	@cc BIGINT,
+	@name VARCHAR(100),
+	@address VARCHAR(100) = NULL,
+	@phone1 BIGINT = NULL,
+	@phone2 BIGINT = NULL,
+	@reference VARCHAR(100) = NULL,
+	@payment_method varchar(100) = NULL
+AS
+BEGIN
+SET NOCOUNT ON;
+	
+	
+	IF @Accion = 'PutClientsName'
+	BEGIN 
+		UPDATE clients
+		SET name = @name
+		WHERE cc = @cc
+	END
+
+	ELSE IF @Accion = 'PutAllClients'
+	BEGIN
+		UPDATE clients
+		SET name=@name, 
+		address=@address,
+		phone1=@phone1,
+		phone2=@phone2,
+		reference=@reference,
+		payment_method = @payment_method
+		WHERE cc = @cc
+	END
+END
+GO
+
+
+
 Execute.GetClients
-Execute.GetClientsId @cc = 4;
-EXECUTE PostClients 
-	@cc=1, @name=Cliente1,@address=Address1,@phone1=1,
-	@phone2=1,@reference=Addres1,@payment_method=Credit1
+Execute.GetClientsId @cc=1;
+EXECUTE.PutClients @Accion = 'PutClientsName', @name = 'Sql Update', @cc =7;
+EXECUTE.PutClients @Accion = 'PutAllClients', @cc=1,
+@name = 'Update Name', @address = 'Update Address', @phone1 = 1, @phone2 = 2, 
+@reference = 'Update Reference', @payment_method = 'Method Update';
+
