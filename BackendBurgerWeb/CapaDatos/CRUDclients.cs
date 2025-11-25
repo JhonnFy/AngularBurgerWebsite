@@ -13,6 +13,63 @@ namespace CapaDatos
     {
         private Conexion conexion = new Conexion();
       
+        public bool PutClients(ModeloClients putClients)
+        {
+            using (var db = conexion.ObtenerCadenaDeConexion())
+            {
+                try
+                {
+                    db.Open();
+                    using (SqlCommand objSqlCommand = new SqlCommand("PutClientsName", db))
+                    {
+                        objSqlCommand.Parameters.AddWithValue("@Accion", "PutAllClients");
+
+                        objSqlCommand.Parameters.AddWithValue("@cc", putClients.cc);
+                        objSqlCommand.Parameters.AddWithValue("@name", putClients.name);
+                        objSqlCommand.Parameters.AddWithValue("@address", putClients.address);
+                        objSqlCommand.Parameters.AddWithValue("@phone1", putClients.phone1);
+                        objSqlCommand.Parameters.AddWithValue("@phone2", putClients.phone2);
+                        objSqlCommand.Parameters.AddWithValue("@reference", putClients.reference);
+                        objSqlCommand.Parameters.AddWithValue("@payment_method", putClients.payment_method);
+
+                        var RowsAffected = objSqlCommand.ExecuteNonQuery();
+                        return RowsAffected > 0;
+
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Debug.WriteLine("[CRUDClients.PutClients] " + ex.Message);
+                    throw new Exception("[CRUDClients.PutClients] " + ex.Message);
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public bool PostClients(ModeloClients PostClients)
         {
