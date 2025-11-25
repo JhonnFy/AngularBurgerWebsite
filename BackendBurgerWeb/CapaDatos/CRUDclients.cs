@@ -45,32 +45,6 @@ namespace CapaDatos
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public List<ModeloClients> GetClientsId(int cc)
         {
             var listGetClientsId = new List<ModeloClients>();
