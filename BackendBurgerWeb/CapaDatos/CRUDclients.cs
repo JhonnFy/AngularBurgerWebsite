@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,7 +13,65 @@ namespace CapaDatos
     {
         private Conexion conexion = new Conexion();
       
-        public List<ModeloClients> GetClientsId(int id)
+
+        public bool PostClients(ModeloClients PostClients)
+        {
+            try
+            {
+                using (var db = conexion.ObtenerCadenaDeConexion())
+                {
+                    db.Open();
+                    using (SqlCommand objSqlCommand = new SqlCommand("PostClients",db)) 
+                    {
+                        objSqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        objSqlCommand.Parameters.AddWithValue("@cc", PostClients.cc);
+                        objSqlCommand.Parameters.AddWithValue("@name", PostClients.name);
+                        objSqlCommand.Parameters.AddWithValue("@address", PostClients.address);
+                        objSqlCommand.Parameters.AddWithValue("@phone1", PostClients.phone1);
+                        objSqlCommand.Parameters.AddWithValue("@phone2", PostClients.phone2);
+                        objSqlCommand.Parameters.AddWithValue("@reference", PostClients.reference);
+                        objSqlCommand.Parameters.AddWithValue("@payment_method", PostClients.payment_method);
+
+                        int RowsAffected = objSqlCommand.ExecuteNonQuery();
+                        return RowsAffected > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("[CRUDClients.PostClients] " + ex.Message);
+                throw new Exception("[CRUDClients.PostClients] " + ex.Message);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public List<ModeloClients> GetClientsId(int cc)
         {
             var listGetClientsId = new List<ModeloClients>();
 
@@ -21,13 +80,11 @@ namespace CapaDatos
                 using (var db = conexion.ObtenerCadenaDeConexion())
                 {
                     db.Open();
-                    string @GetId =
-                        "SELECT cc,name,address,phone1,phone2,reference,payment_method FROM clients " +
-                        "WHERE cc = @id ";
 
-                    using (SqlCommand objSqlCommand = new SqlCommand(GetId, db))
+                    using (SqlCommand objSqlCommand = new SqlCommand("GetClientsId", db))
                     {
-                        objSqlCommand.Parameters.AddWithValue("@id",id);
+                        objSqlCommand.Parameters.AddWithValue("@cc",cc);
+                        objSqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
                         using (SqlDataReader  runSql = objSqlCommand.ExecuteReader())
                         {
@@ -56,22 +113,7 @@ namespace CapaDatos
             }
             return listGetClientsId;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
         public List<ModeloClients> GetClients()
         {
             var listClients = new List<ModeloClients>();
@@ -80,11 +122,9 @@ namespace CapaDatos
                 using (var db = conexion.ObtenerCadenaDeConexion())
                 {
                     db.Open();
-                    string @Get =
-                        "SELECT cc,name,address,phone1,phone2,reference,payment_method " +
-                        "FROM clients ";
-                    using (SqlCommand sqlCommand = new SqlCommand(Get,db))
+                    using (SqlCommand sqlCommand = new SqlCommand("GetClients", db))
                     {
+                        sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
                         using (SqlDataReader runSqlCommand = sqlCommand.ExecuteReader())
                         {
                             while (runSqlCommand.Read())

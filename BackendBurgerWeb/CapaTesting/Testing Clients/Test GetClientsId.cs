@@ -15,7 +15,7 @@ namespace CapaTesting.Testing_Clients
         public void TestGetClientsId()
         {
             CRUDclients classClients = new CRUDclients();
-            var MethodClients = classClients.GetClientsId(1);
+            var MethodClients = classClients.GetClientsId(4);
 
             try
             {
