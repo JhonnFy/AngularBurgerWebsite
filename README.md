@@ -238,25 +238,7 @@ Tabla de sedes / tiendas:
 ## Docker
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/fcfb11e8-973d-49c6-85b7-d602764b538e" />
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/13e40944-e036-4eac-85fb-af846fb7a275" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/d803ebcc-847b-418f-bae6-3e2c300b1ad7" />
 
 
 
