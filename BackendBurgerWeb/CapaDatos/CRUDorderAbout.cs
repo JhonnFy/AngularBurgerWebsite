@@ -3,6 +3,7 @@ using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,9 +13,48 @@ namespace CapaDatos
     {
         private Conexion conexion = new Conexion();
 
+
+        public ModeloOrderAbout PostOrderAbout(ModeloOrderAbout PostOrder)
+        {
+            ModeloOrderAbout model = null; 
+
+            try
+            {
+                using (var db  = conexion.ObtenerCadenaDeConexion())
+                {
+                    db.Open();
+                    using (var cmd = new  SqlCommand("PostOrderAbout",db))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@id", PostOrder.id);
+                        cmd.Parameters.AddWithValue("@client_cc", PostOrder.client_cc);
+                        cmd.Parameters.AddWithValue("@hamburger_id", PostOrder.hamburger_id);
+                        cmd.Parameters.AddWithValue("@quantity", PostOrder.quantity);
+                        cmd.Parameters.AddWithValue("@total_price", PostOrder.total_price);
+                        cmd.Parameters.AddWithValue("@status", PostOrder.status);
+                        cmd.Parameters.AddWithValue("@store_id", PostOrder.store_id);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            model = PostOrder;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("[****].[Error].[PostOrderAbout]" + ex.Message);
+            }
+            return model;
+        }
+
+
         public ModeloOrderAbout GetOrderAboutId(int id)
         {
-            var model = new ModeloOrderAbout();
+            ModeloOrderAbout model = null;
 
             try
             {
