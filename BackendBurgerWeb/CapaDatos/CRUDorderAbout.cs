@@ -38,7 +38,6 @@ namespace CapaDatos
                         {
                             model = PutOrder;
                         }
-
                     }
                 }
             }
@@ -48,11 +47,6 @@ namespace CapaDatos
             }
             return model != null;
         }
-
-
-
-
-
 
         public ModeloOrderAbout PostOrderAbout(ModeloOrderAbout PostOrder)
         {
@@ -90,7 +84,6 @@ namespace CapaDatos
             }
             return model;
         }
-
 
         public ModeloOrderAbout GetOrderAboutId(int id)
         {
