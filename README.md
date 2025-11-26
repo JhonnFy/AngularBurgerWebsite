@@ -12,7 +12,6 @@ Aplicación desarrollada en .NET con arquitectura en capas (Data, Business, Cont
 3. [OrdenInsert](#OrdenInsert)
 4. [Test](#Test)
 5. [ReglasDeNegocio](#ReglasDeNegocio)
-6. [Docker](#Docker)
 ---
 
 ## FlujoDePedidosClientes
@@ -235,10 +234,6 @@ Tabla de sedes / tiendas:
 
 ---
 
-## Docker
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/fcfb11e8-973d-49c6-85b7-d602764b538e" />
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/13e40944-e036-4eac-85fb-af846fb7a275" />
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/44f73bcd-728a-4304-9ceb-71a3aa51fd42" />
 
 
 
