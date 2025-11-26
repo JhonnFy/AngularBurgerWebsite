@@ -14,6 +14,46 @@ namespace CapaDatos
         private Conexion conexion = new Conexion();
 
 
+        public bool PutOrderAbout(ModeloOrderAbout PutOrder)
+        {
+            ModeloOrderAbout model = null;
+
+            try
+            {
+                using (var db = conexion.ObtenerCadenaDeConexion())
+                {
+                    db.Open();
+                    using (var cmd = new SqlCommand("PutOrderAbout", db))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@id", PutOrder.id);
+                        cmd.Parameters.AddWithValue("@quantity", PutOrder.quantity);
+                        cmd.Parameters.AddWithValue("@total_price", PutOrder.total_price);
+                        cmd.Parameters.AddWithValue("@status", PutOrder.status);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            model = PutOrder;
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("[****].[Error].[PutOrderAbout]" + ex.Message);
+            }
+            return model != null;
+        }
+
+
+
+
+
+
         public ModeloOrderAbout PostOrderAbout(ModeloOrderAbout PostOrder)
         {
             ModeloOrderAbout model = null; 
@@ -92,34 +132,6 @@ namespace CapaDatos
             }
             return model;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         public List<ModeloOrderAbout> GetOrderAbout()
         {

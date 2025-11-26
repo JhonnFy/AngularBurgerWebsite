@@ -119,6 +119,23 @@ BEGIN
 	(@id,@client_cc,@hamburger_id,@quantity,@total_price,@status,@store_id,GETDATE())
 END
 GO
+-- ===================================================
+-- Sp(PutOrderAbout)
+-- ===================================================
+CREATE PROCEDURE PutOrderAbout
+	@id BIGINT,
+	@quantity BIGINT,
+	@total_price DECIMAL,
+	@status VARCHAR(100)
+AS
+BEGIN
+	UPDATE order_about
+	SET  quantity=@quantity,total_price=@total_price,status=@status
+	WHERE id = @id
+END
+GO
+
+
 
 Execute.GetClients
 Execute.GetClientsId @cc=1;
