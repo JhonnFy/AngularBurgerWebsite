@@ -2,6 +2,8 @@
 using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -13,97 +15,9 @@ namespace CapaDatos
     {
         private Conexion conexion = new Conexion();
 
-        public bool DeleteClients(int cc)
+        public bool DeleteClients (ModeloClients DeleteClients)
         {
-            try
-            {
-                using (var db = conexion.ObtenerCadenaDeConexion())
-                {
-                    db.Open();
-                    using (SqlCommand objSqlCommand = new SqlCommand("DeleteClients", db))
-                    {
-                        objSqlCommand.Parameters.AddWithValue("@cc", cc);
-                        objSqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                        
-                        int RowsAffect = objSqlCommand.ExecuteNonQuery();
-                        return RowsAffect > 0;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("[****].[Error Class].[CRUDClients.DeleteClients] " + ex.Message);
-                throw new Exception("[****].[Error Class].[CRUDClients.DeleteClients] " + ex.Message);
-            }
-        }
-
-        public bool PutClients(ModeloClients putClients)
-        {
-            using (var db = conexion.ObtenerCadenaDeConexion())
-            {
-                try
-                {
-                    db.Open();
-                    using (SqlCommand objSqlCommand = new SqlCommand("PutClients", db))
-                    {
-                        objSqlCommand.Parameters.AddWithValue("@Accion", "PutAllClients");
-                        objSqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
-
-                        objSqlCommand.Parameters.AddWithValue("@cc", putClients.cc);
-                        objSqlCommand.Parameters.AddWithValue("@name", putClients.name);
-                        objSqlCommand.Parameters.AddWithValue("@address", putClients.address);
-                        objSqlCommand.Parameters.AddWithValue("@phone1", putClients.phone1);
-                        objSqlCommand.Parameters.AddWithValue("@phone2", putClients.phone2);
-                        objSqlCommand.Parameters.AddWithValue("@reference", putClients.reference);
-                        objSqlCommand.Parameters.AddWithValue("@payment_method", putClients.payment_method);
-
-                        var RowsAffected = objSqlCommand.ExecuteNonQuery();
-                        return RowsAffected > 0;
-
-                    }
-                }
-                catch(Exception ex)
-                {
-                    Debug.WriteLine("[****].[Error Class].[CRUDClients.PutClients] " + ex.Message);
-                    throw new Exception("[****].[Error Class].[CRUDClients.PutClients] " + ex.Message);
-                }
-            }
-        }
-
-        public bool PostClients(ModeloClients PostClients)
-        {
-            try
-            {
-                using (var db = conexion.ObtenerCadenaDeConexion())
-                {
-                    db.Open();
-                    using (SqlCommand objSqlCommand = new SqlCommand("PostClients",db)) 
-                    {
-                        objSqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
-
-                        objSqlCommand.Parameters.AddWithValue("@cc", PostClients.cc);
-                        objSqlCommand.Parameters.AddWithValue("@name", PostClients.name);
-                        objSqlCommand.Parameters.AddWithValue("@address", PostClients.address);
-                        objSqlCommand.Parameters.AddWithValue("@phone1", PostClients.phone1);
-                        objSqlCommand.Parameters.AddWithValue("@phone2", PostClients.phone2);
-                        objSqlCommand.Parameters.AddWithValue("@reference", PostClients.reference);
-                        objSqlCommand.Parameters.AddWithValue("@payment_method", PostClients.payment_method);
-
-                        int RowsAffected = objSqlCommand.ExecuteNonQuery();
-                        return RowsAffected > 0;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("[****].[Error Class].[CRUDClients.PostClients] " + ex.Message);
-                throw new Exception("[****].[Error Class].[CRUDClients.PostClients] " + ex.Message);
-            }
-        }
-
-        public List<ModeloClients> GetClientsId(int cc)
-        {
-            var listGetClientsId = new List<ModeloClients>();
+            ModeloClients model = null;
 
             try
             {
@@ -111,65 +25,168 @@ namespace CapaDatos
                 {
                     db.Open();
 
-                    using (SqlCommand objSqlCommand = new SqlCommand("GetClientsId", db))
+                    using (var cmd = new SqlCommand("DeleteClients",db))
                     {
-                        objSqlCommand.Parameters.AddWithValue("@cc",cc);
-                        objSqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@cc", DeleteClients.cc);
 
-                        using (SqlDataReader  runSql = objSqlCommand.ExecuteReader())
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
                         {
-                            while (runSql.Read())
-                            {
-                                var ModeloId = new ModeloClients
-                                {
-                                    cc = runSql.GetInt64(0),
-                                    name = runSql.GetString(1),
-                                    address = runSql.GetString(2),
-                                    phone1 = runSql.GetInt64(3),
-                                    phone2 = runSql.GetInt64(4),
-                                    reference = runSql.GetString(5),
-                                    payment_method = runSql.GetString(6)
-                                };
-                                listGetClientsId.Add(ModeloId);
-                            }
+                            model = DeleteClients;
                         }
                     }
                 }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("[****].[Error].[DeleteClients]" + ex.Message);
+            }
+            return model != null;
+        }
 
+        public bool PutClient(ModeloClients PutClient)
+        {
+            ModeloClients model = null;
+
+           try
+            {
+                using (var db = conexion.ObtenerCadenaDeConexion())
+                {
+                    db.Open();
+                    using (var cmd = new SqlCommand("PutClients", db))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@PutClients", "PutAllClients");
+
+                        cmd.Parameters.AddWithValue("@cc", PutClient.cc);
+                        cmd.Parameters.AddWithValue("@name", PutClient.name);
+                        cmd.Parameters.AddWithValue("@address", PutClient.address);
+                        cmd.Parameters.AddWithValue("@phone1", PutClient.phone1);
+                        cmd.Parameters.AddWithValue("@phone2", PutClient.phone2);
+                        cmd.Parameters.AddWithValue("@reference", PutClient.reference);
+                        cmd.Parameters.AddWithValue("@payment_method", PutClient.payment_method);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            model = PutClient;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("[****].[Error].[PutClients]" + ex.Message);
+            }
+            return model != null;
+        }
+
+        
+        public ModeloClients PostClients(ModeloClients PostClients)
+        {
+            ModeloClients model = null;
+            try
+            {
+                using (var db = conexion.ObtenerCadenaDeConexion())
+                {
+                    db.Open();
+                    using (var cmd = new SqlCommand("PostClients", db))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@cc", PostClients.cc);
+                        cmd.Parameters.AddWithValue("@name", PostClients.name);
+                        cmd.Parameters.AddWithValue("@address", PostClients.address);
+                        cmd.Parameters.AddWithValue("@phone1", PostClients.phone1);
+                        cmd.Parameters.AddWithValue("@phone2", PostClients.phone2);
+                        cmd.Parameters.AddWithValue("@reference", PostClients.reference);
+                        cmd.Parameters.AddWithValue("@payment_method", PostClients.payment_method);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            model = PostClients;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("[****].[Error].[PostClients]" + ex.Message);
+            }
+            return model;
+        }
+
+
+        public ModeloClients GetClientsId(int cc)
+        {
+            ModeloClients model = null;
+
+            try
+            {
+                using (var db = conexion.ObtenerCadenaDeConexion())
+                {
+                    db.Open();
+                    using (var cmd = new SqlCommand("GetClientsId",db))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@cc", cc);
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                model = new ModeloClients
+                                {
+                                    cc = reader.GetInt64(0),
+                                    name = reader.GetString(1),
+                                    address = reader.GetString(2),
+                                    phone1 = reader.GetInt64(3),
+                                    phone2 = reader.GetInt64(4),
+                                    reference = reader.GetString(5),
+                                    payment_method = reader.GetString(6)
+                                };
+                            }
+                        } 
+                    }
+                }
             }catch (Exception ex)
             {
-                Debug.WriteLine("[****].[Error Class].[CRUDClients.GetClientsId] " + ex.Message);
-                throw new Exception("[****].[Error Class].[CRUDClients.GetClientsId] " + ex.Message);
+                throw new Exception("[****].[Error].[GetClients]" + ex.Message);
             }
-            return listGetClientsId;
+            return model;
         }
 
         public List<ModeloClients> GetClients()
         {
-            var listClients = new List<ModeloClients>();
+            var list = new List<ModeloClients>();
             try
             {
                 using (var db = conexion.ObtenerCadenaDeConexion())
                 {
                     db.Open();
-                    using (SqlCommand sqlCommand = new SqlCommand("GetClients", db))
+                    using (var cmd = new SqlCommand("GetClients",db))
                     {
-                        sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                        using (SqlDataReader runSqlCommand = sqlCommand.ExecuteReader())
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        using (var reader = cmd.ExecuteReader())
                         {
-                            while (runSqlCommand.Read())
+                            while(reader.Read())
                             {
-                                var Modelo = new ModeloClients
+                                list.Add(new ModeloClients
                                 {
-                                    cc = runSqlCommand.GetInt64(0),
-                                    name = runSqlCommand.GetString(1),
-                                    address = runSqlCommand.GetString(2),
-                                    phone1 = runSqlCommand.GetInt64(3),
-                                    phone2 = runSqlCommand.GetInt64(4),
-                                    reference = runSqlCommand.GetString(5),
-                                    payment_method = runSqlCommand.GetString(6)
-                                };
-                                listClients.Add(Modelo);
+                                    cc = reader.GetInt64(0),
+                                    name = reader.GetString(1),
+                                    address = reader.GetString(2),
+                                    phone1 = reader.GetInt64(3),
+                                    phone2 = reader.GetInt64(4),
+                                    reference = reader.GetString(5),
+                                    payment_method = reader.GetString(6)
+                                });
                             }
                         }
                     }
@@ -177,10 +194,9 @@ namespace CapaDatos
             }
             catch(Exception ex)
             {
-                Debug.WriteLine("[****].[Error Class].[CRUDClients.GetClients] " + ex.Message);
-                throw new Exception("[****].[Error Class].[CRUDClients.GetClients] " + ex.Message);
+                throw new Exception("[****].[Error].[GetClients]" + ex.Message);
             }
-            return listClients;
+            return list;
         }
     }
 }
