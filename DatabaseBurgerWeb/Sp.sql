@@ -276,6 +276,20 @@ BEGIN
 	WHERE id = @id
 END
 GO
+-- ===================================================
+-- Sp(PostAboutHamburger)
+-- ===================================================
+CREATE PROCEDURE PostAboutHamburger
+	@id BIGINT,
+	@name VARCHAR(100)
+AS
+BEGIN
+	INSERT INTO aboutHamburger (id, name) 
+	VALUES
+	(@id,@name)
+END
+GO
+
 
 
 
