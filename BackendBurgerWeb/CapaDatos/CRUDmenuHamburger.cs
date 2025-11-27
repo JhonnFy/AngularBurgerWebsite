@@ -15,115 +15,127 @@ namespace CapaDatos
     public class CRUDmenuHamburger
     {
         private Conexion conexion = new Conexion();
-        public bool DeleteMenuHamburger(ModeloMenuHamburger deleteHamburger)
+        public bool DeleteMenuHamburger(ModeloMenuHamburger DeleteMenuHamburger)
         {
+            ModeloMenuHamburger model = null;
+
             try
             {
                 using (var db = conexion.ObtenerCadenaDeConexion())
                 {
                     db.Open();
-                    string  @Delete = 
-                        "DELETE FROM menuHamburger " +
-                        "WHERE id = @id ";
 
-                    using (SqlCommand objSqlCommand = new SqlCommand(Delete, db))
+                    using (var cmd = new SqlCommand("DeleteMenuHamburger", db))
                     {
-                        objSqlCommand.Parameters.AddWithValue("@id", deleteHamburger.id);
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@id", DeleteMenuHamburger.id);
 
-                        var RowsAffect = objSqlCommand.ExecuteNonQuery();
-                        return RowsAffect > 0;
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected >0)
+                        {
+                            model = DeleteMenuHamburger;
+                        }
+
                     }
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("[****].[Error].[CRUDmenuHamburger.DeleteMenuHamburger] " + ex.Message);
-                throw new Exception("[****].[Error].[CRUDmenuHamburger.DeleteMenuHamburger] " + ex.Message);
+                throw new Exception("[****].[Error].[PutmenuHamburger]" + ex.Message);
             }
+            return model != null;
         }   
-        public bool PutMenuHamburger(ModeloMenuHamburger putHamburger)
+
+
+
+        public bool PutMenuHamburger(ModeloMenuHamburger PutMenuHamburger)
         {
-            try
-            {   
-                using (var db = conexion.ObtenerCadenaDeConexion())
-                {
-                    db.Open();
-                    string @Put =
-                            "UPDATE menuHamburger " +
-                            "SET name = @name " +
-                            "WHERE id = @id ";
-
-                    using (SqlCommand objSqlCommand = new SqlCommand(Put,db))
-                    {
-                        objSqlCommand.Parameters.AddWithValue("@id", putHamburger.id);
-                        objSqlCommand.Parameters.AddWithValue("@name", putHamburger.name);
-
-                        int RowsAffected = objSqlCommand.ExecuteNonQuery();
-                        return RowsAffected > 0;
-                    }
-                }
-            }
-            catch(Exception ex)
-            {
-                Debug.WriteLine("[****].[Error].[CRUDmenuHamburger.PutMenuHamburger] " + ex.Message);
-                throw new Exception("[****].[Error].[CRUDmenuHamburger.PutMenuHamburger] " + ex.Message);
-            }
-        }
-        public bool PostMenuHamburger(ModeloMenuHamburger createMenu)
-        {
-            try
-            {
-                using(var db = conexion.ObtenerCadenaDeConexion())
-                {
-                    db.Open();
-
-                    string @Post =
-                        "INSERT INTO menuHamburger (id, name)" +
-                        "VALUES (@id,@name) ";
-                    using (SqlCommand objSqlCommand = new SqlCommand(Post, db))
-                    {
-                        objSqlCommand.Parameters.AddWithValue("@id", createMenu.id);
-                        objSqlCommand.Parameters.AddWithValue("@name", createMenu.name);
-
-                        int RowsAffected = objSqlCommand.ExecuteNonQuery();
-                        return RowsAffected > 0;
-                    }
-                }
-            }
-            catch(Exception ex)
-            {
-                Debug.WriteLine("[****].[Error].[CRUDmenuHamburger.PostMenuHamburger] " + ex.Message);
-                throw new Exception("[****].[Error].[CRUDmenuHamburger.PostMenuHamburger] " + ex.Message);
-            }
-        }
-        public List<ModeloMenuHamburger> GetMenuHamburgerId(int id)
-        {
-
-            var listaMenuHamburger = new List<ModeloMenuHamburger>();
+            ModeloMenuHamburger model = null;
 
             try
             {
                 using (var db = conexion.ObtenerCadenaDeConexion())
                 {
                     db.Open();
-                    string @GetId =
-                        "SELECT id, name FROM menuHamburger " +
-                        "WHERE id = @id";
 
-                    using (SqlCommand objSqlCommand = new SqlCommand(GetId, db))
+                    using (var cmd = new SqlCommand("PutMenuHamburger", db))
                     {
-                        objSqlCommand.Parameters.AddWithValue("@id", id);
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                        using (SqlDataReader objSqlDataReader = objSqlCommand.ExecuteReader())
+                        cmd.Parameters.AddWithValue("@id", PutMenuHamburger.id);
+                        cmd.Parameters.AddWithValue("@name", PutMenuHamburger.name);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
                         {
-                            while (objSqlDataReader.Read())
+                            model = PutMenuHamburger;
+                        }
+
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("[****].[Error].[PutmenuHamburger]" + ex.Message);
+            }
+            return model != null;
+        }
+        
+        public ModeloMenuHamburger PostMenuHamburger(ModeloMenuHamburger PostMenuHamburger)
+        {
+            ModeloMenuHamburger model = null;
+            try
+            {
+                using (var db = conexion.ObtenerCadenaDeConexion())
+                {
+                    db.Open();
+                    using (var cmd = new SqlCommand("PostMenuHamburger",db))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@id", PostMenuHamburger.id);
+                        cmd.Parameters.AddWithValue("@name", PostMenuHamburger.name);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            model = PostMenuHamburger;
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("[****].[Error].[PostMenuHamburger]" + ex.Message);
+            }
+            return model;
+        }
+
+        public ModeloMenuHamburger GetMenuHamburgerId(int id)
+        {
+            ModeloMenuHamburger model = null;
+            try
+            {
+                using (var db = conexion.ObtenerCadenaDeConexion())
+                {
+                    db.Open();
+                    using (var cmd = new SqlCommand("GetMenuHamburgerId",db))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@id", id);
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
                             {
-                                var ModeloMenu = new ModeloMenuHamburger
+                                model = new ModeloMenuHamburger()
                                 {
-                                    id = objSqlDataReader.GetInt64(0),
-                                    name = objSqlDataReader.GetString(1)
+                                    id = reader.GetInt64(0),
+                                    name = reader.IsDBNull(1) ? "" : reader.GetString(1)
                                 };
-                                listaMenuHamburger.Add(ModeloMenu);
                             }
                         }
                     }
@@ -131,43 +143,42 @@ namespace CapaDatos
             }
             catch(Exception ex)
             {
-                Debug.WriteLine("[****].[Error].[CRUDmenuHamburger.GetMenuHamburgerId] " + ex.Message);
-                throw new Exception("[****].[Error].[CRUDmenuHamburger.GetMenuHamburgerId] " + ex.Message);
+                throw new Exception("[****].[Error].[GetMenuHamburgerId]" + ex.Message);
             }
-            return listaMenuHamburger;
+            return model;
         }
+
         public List<ModeloMenuHamburger> GetMenuHamburger()
         {
-            var listMenuHamburger = new List<ModeloMenuHamburger>();
+            var list = new List<ModeloMenuHamburger>();
 
                 try
                 {
                     using (var db = conexion.ObtenerCadenaDeConexion())
                     {
                         db.Open();
-                    string @Get =
-                        "SELECT id, name FROM menuHamburger";
-                    using (SqlCommand objSqlCommand = new SqlCommand(Get, db))
-                    using (SqlDataReader objSqlDataReader = objSqlCommand.ExecuteReader())
+                        using (var cmd = new SqlCommand("GetMenuHamburger", db))
                         {
-                            while (objSqlDataReader.Read())
+                            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                            using (var reader = cmd.ExecuteReader())
                             {
-                                var modeloMenuHamburger = new ModeloMenuHamburger
+                                while(reader.Read())
                                 {
-                                    id = objSqlDataReader.GetInt64(0),
-                                    name = objSqlDataReader.GetString(1)
-                                };
-                            listMenuHamburger.Add(modeloMenuHamburger);
+                                    list.Add(new ModeloMenuHamburger
+                                    {
+                                        id = reader.GetInt64(0),
+                                        name = reader.GetString(1)
+                                    });
+                                }
                             }
                         }
                     }
                 }
                 catch(Exception ex)
                 {
-                    Debug.WriteLine("[****].[Error].[CRUDmenuHamburger.GetHamburger] " + ex.Message);
-                    throw new Exception("[****].[Error].[CRUDmenuHamburger.GetHamburger] " + ex.Message);
-                }
-            return listMenuHamburger;
+                throw new Exception("[****].[Error].[GetMenuHamburger]" + ex.Message);
+            }
+            return list;
         }
     }
 }
