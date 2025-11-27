@@ -233,7 +233,7 @@ BEGIN
 END
 GO
 -- ===================================================
--- Sp(PostMenuHamburger)
+-- Sp(PutmenuHamburger)
 -- ===================================================
 CREATE PROCEDURE PutmenuHamburger
 	@id BIGINT,
@@ -245,7 +245,17 @@ BEGIN
 	WHERE id = @id
 END
 GO
-
+-- ===================================================
+-- Sp(DeleteMenuHamburger)
+-- ===================================================
+CREATE PROCEDURE DeleteMenuHamburger 
+	@id BIGINT
+AS
+BEGIN
+	DELETE FROM MenuHamburger
+	WHERE id = @id
+END
+GO
 
 
 
