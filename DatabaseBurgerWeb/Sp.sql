@@ -289,9 +289,19 @@ BEGIN
 	(@id,@name)
 END
 GO
-
-
-
+-- ===================================================
+-- Sp(PutAboutHamburger)
+-- ===================================================
+CREATE PROCEDURE PutAboutHamburger
+	@id BIGINT,
+	@name VARCHAR(100)
+AS
+BEGIN
+	UPDATE aboutHamburger
+	SET name=@name 
+	WHERE id = @id
+END
+GO
 
 
 Execute.GetClients
