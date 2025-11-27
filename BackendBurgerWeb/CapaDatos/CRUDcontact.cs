@@ -17,167 +17,179 @@ namespace CapaDatos
     {
         private Conexion conexion = new Conexion();
 
-        public bool DeleteContact(int id)
+        public bool DeleteContact(ModeloContact DeleteContact)
         {
+            ModeloContact model = null;
+
             try
             {
-                var db = conexion.ObtenerCadenaDeConexion();
-                db.Open();
-
-                string @Delete =
-                    "DELETE FROM contact " +
-                    "WHERE id = @id ";
-
-                using (SqlCommand objSqlCommand = new SqlCommand(Delete, db))
+                using (var db = conexion.ObtenerCadenaDeConexion())
                 {
-                    objSqlCommand.Parameters.AddWithValue("@id", id);
+                    db.Open();
 
-                    int rowsAffected = objSqlCommand.ExecuteNonQuery();
-                    return rowsAffected > 0;
+                    using (var cmd = new SqlCommand("DeleteContact", db))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@id", DeleteContact.id);
+
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            model = DeleteContact;
+                        }
+
+                    }
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("[****].[ERROR].[CapaDatos].[DeleteContact]");
-                throw new Exception("[****].[ERROR].[CapaDatos].[DeleteContact] " + ex.Message);
+                throw new Exception("[****].[Error].[DeleteContact]" + ex.Message);
             }
+            return model != null;
         }
 
-        public bool PutContact(ModeloContact putNewContact)
+
+        public bool PutContact(ModeloContact PutContact)
         {
+            ModeloContact model = null;
+
             try
             {
-                var db = conexion.ObtenerCadenaDeConexion();
-                db.Open();
-
-                string @Put =
-                    "UPDATE contact SET " +
-                    "name = @name, address = @address, phone = @phone " +
-                    "WHERE id = @id ";
-
-                using (SqlCommand objSqlCommand = new SqlCommand(Put, db))
+                using (var db = conexion.ObtenerCadenaDeConexion())
                 {
-                    objSqlCommand.Parameters.AddWithValue("@id", putNewContact.id);
-                    objSqlCommand.Parameters.AddWithValue("@name", putNewContact.name);
-                    objSqlCommand.Parameters.AddWithValue("@address", putNewContact.address);
-                    objSqlCommand.Parameters.AddWithValue("@phone", putNewContact.phone);
+                    db.Open();
+                    using (var cmd =  new SqlCommand("PutContact", db))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    int rowsAffected = objSqlCommand.ExecuteNonQuery();
-                    return rowsAffected > 0;
-                }
-            }
-            catch (Exception ex )
-            {
-                Debug.WriteLine("[****].[ERROR].[CapaDatos].[PutContact]");
-                throw new Exception("[****].[ERROR].[CapaDatos].[PutContact] " + ex.Message);
-            }
-        }
+                        cmd.Parameters.AddWithValue("@id", PutContact.id);
+                        cmd.Parameters.AddWithValue("@name", PutContact.name);
+                        cmd.Parameters.AddWithValue("@address", PutContact.address);
+                        cmd.Parameters.AddWithValue("@phone", PutContact.phone);
 
-        public bool PostContact(ModeloContact newContact)
-        {
-            try
-            {
-                var db = conexion.ObtenerCadenaDeConexion();
-                db.Open();
+                        int rowsAffected = cmd.ExecuteNonQuery();
 
-                string @Post =
-                    "INSERT INTO contact (id,name, address, phone) " +
-                    "VALUES  (@id,@name,@address,@phone)";
+                        if (rowsAffected > 0)
+                        {
+                            model = PutContact;
+                        }
 
-                using (SqlCommand createContact = new SqlCommand(Post, db))
-                {
-                    createContact.Parameters.AddWithValue("@id", newContact.id);
-                    createContact.Parameters.AddWithValue("@name", newContact.name);
-                    createContact.Parameters.AddWithValue("@address", newContact.address);
-                    createContact.Parameters.AddWithValue("@phone", newContact.phone);
-
-                    int rowsAffected = createContact.ExecuteNonQuery();
-                    return rowsAffected > 0;
+                    }
                 }
             }
             catch(Exception ex)
             {
-                Debug.WriteLine("[****].[ERROR].[CapaDatos].[PostContact]");
-                throw new Exception("[****].[ERROR].[CapaDatos].[PostContact] " + ex.Message);
+                throw new Exception("[****].[Error].[PutContact]" + ex.Message);
             }
+            return model != null;
         }
-        public List<ModeloContact> GetContactId(int id)
+
+        public ModeloContact PostContac(ModeloContact PostContac)
         {
-            var listsGetContactId = new List<ModeloContact>();
+            ModeloContact model = null;
 
             try
             {
                 using (var db = conexion.ObtenerCadenaDeConexion())
                 {
                     db.Open();
-                    string @ReadId =
-                        "SELECT id, name, address, phone FROM contact " +
-                        "WHERE id = @id ";
-
-                    using (SqlCommand objSqlCommand = new SqlCommand(ReadId, db))
+                    using (var cmd = new SqlCommand("PostContact", db))
                     {
-                        objSqlCommand.Parameters.AddWithValue("@id", id);
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                        using (SqlDataReader objSqlDataReader = objSqlCommand.ExecuteReader())
+                        cmd.Parameters.AddWithValue("@id",PostContac.id);
+                        cmd.Parameters.AddWithValue("@name",PostContac.name);
+                        cmd.Parameters.AddWithValue("@address", PostContac.address);
+                        cmd.Parameters.AddWithValue("@phone", PostContac.phone);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
                         {
-                            while (objSqlDataReader.Read())
+                            model = PostContac;
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("[****].[Error].[PostContact]" + ex.Message);
+            }
+            return model;
+        }
+        
+        public ModeloContact GetContactId(int id)
+        {
+            ModeloContact model = null;
+
+            try
+            {
+                using (var db = conexion.ObtenerCadenaDeConexion())
+                {
+                    db.Open();
+                    using (var cmd = new SqlCommand("GetContactId", db))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@id", id);
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
                             {
-                                var modelContactId = new ModeloContact
+                                model = new ModeloContact()
                                 {
-                                    id = objSqlDataReader.GetInt64(0),
-                                    name = objSqlDataReader.GetString(1),
-                                    address = objSqlDataReader.GetString(2),
-                                    phone = objSqlDataReader.GetInt64(3)
+                                    id = reader.GetInt64(0),
+                                    name = reader.GetString(1),
+                                    address = reader.GetString(2),
+                                    phone = reader.GetInt64(3)
                                 };
-                                listsGetContactId.Add(modelContactId);
                             }
                         }
                     }
-
                 }
+
             }catch(Exception ex)
             {
-                Debug.WriteLine("[CRUDcontact.GetContactIds] " + ex.Message);
-                throw new Exception("CRUDcontact.GetContactId] " + ex.Message);
+                throw new Exception("[****].[Error].[GetContactId]" + ex.Message);
             }
-            return listsGetContactId;
+            return model;
         }
 
         public List<ModeloContact> GetContact()
         {
-            var listaGetContact = new List<ModeloContact>();
+            var list = new List<ModeloContact>();
 
             try
             {
                 using (var db = conexion.ObtenerCadenaDeConexion())
                 {
                     db.Open();
-                    string @Read =
-                        "SELECT id, name, address, phone FROM contact";
-
-                    using (SqlCommand objSqlCommand = new SqlCommand(Read, db))
-                    using (SqlDataReader objSqlDataReader = objSqlCommand.ExecuteReader())
+                    using (var cmd = new SqlCommand("GetContact", db))
                     {
-                        while (objSqlDataReader.Read())
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        using (var reader = cmd.ExecuteReader())
                         {
-                            var modeloContact = new ModeloContact
+                            while (reader.Read())
                             {
-                                id = objSqlDataReader.GetInt64(0),
-                                name = objSqlDataReader.GetString(1),
-                                address = objSqlDataReader.GetString(2),
-                                phone = objSqlDataReader.GetInt64(3)
-                            };
-                            listaGetContact.Add(modeloContact);
+                                list.Add(new ModeloContact
+                                {
+                                    id = reader.GetInt64(0),
+                                    name = reader.GetString(1),
+                                    address = reader.GetString(2),
+                                    phone = reader.GetInt64(3)
+                                });
+                            }
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("[CRUDcontact.GetContacts] " +  ex.Message);
-                throw new Exception("[CRUDcontact.GetContacts] " + ex.Message);
+                throw new Exception("[****].[Error].[GetContact]" + ex.Message);
             }
-            return listaGetContact;
+            return list;
         }
     }
 }
