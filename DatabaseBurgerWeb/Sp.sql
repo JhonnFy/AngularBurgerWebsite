@@ -219,7 +219,19 @@ BEGIN
 	WHERE id = @id
 END
 GO
-
+-- ===================================================
+-- Sp(PostMenuHamburger)
+-- ===================================================
+CREATE PROCEDURE PostMenuHamburger
+	@id BIGINT,
+	@name VARCHAR(100)
+AS
+BEGIN
+	INSERT INTO MenuHamburger (id, name) 
+	VALUES
+	(@id,@name)
+END
+GO
 
 
 
