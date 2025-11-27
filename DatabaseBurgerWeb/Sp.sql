@@ -199,6 +199,15 @@ BEGIN
 	WHERE id = @id
 END
 GO
+-- ===================================================
+-- Sp(GetMenuHamburger)
+-- ===================================================
+CREATE PROCEDURE GetMenuHamburger
+AS
+BEGIN
+	SELECT id, name FROM menuHamburger
+END
+GO
 
 
 Execute.GetClients
