@@ -302,6 +302,17 @@ BEGIN
 	WHERE id = @id
 END
 GO
+-- ===================================================
+-- Sp(DeleteAboutHamburger)
+-- ===================================================
+CREATE PROCEDURE DeleteAboutHamburger
+	@id BIGINT
+AS
+BEGIN
+	DELETE FROM aboutHamburger
+	WHERE id = @id
+END
+GO
 
 
 Execute.GetClients
