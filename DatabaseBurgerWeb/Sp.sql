@@ -266,10 +266,8 @@ BEGIN
 END
 GO
 -- ===================================================
--- Sp(GetMenuHamburger)
+-- Sp(GetMenuHamburgerId)
 -- ===================================================
-  
-
 CREATE PROCEDURE GetaboutHamburgerId
 	@id BIGINT
 AS
@@ -278,6 +276,8 @@ BEGIN
 	WHERE id = @id
 END
 GO
+
+
 
 
 Execute.GetClients
