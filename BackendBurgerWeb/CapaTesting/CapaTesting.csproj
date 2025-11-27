@@ -16,4 +16,11 @@
     <ProjectReference Include="..\CapaDatos\CapaDatos.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Testing AboutHamburger\" />
+    <Folder Include="Testing Clients\" />
+    <Folder Include="Testing Contact\" />
+    <Folder Include="Testing MenuHamburger\" />
+  </ItemGroup>
+
 </Project>
