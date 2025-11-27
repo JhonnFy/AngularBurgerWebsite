@@ -135,6 +135,70 @@ BEGIN
 END
 GO
 
+-- ===================================================
+-- Sp(GetContact)
+-- ===================================================
+CREATE PROCEDURE GetContact
+AS
+BEGIN
+	SELECT id, name, address, phone FROM contact
+END
+GO
+
+-- ===================================================
+-- Sp(GetContactId)
+-- ===================================================
+CREATE PROCEDURE GetContactId
+	@id BIGINT
+AS
+BEGIN
+	SELECT id, name, address, phone FROM contact
+	WHERE id = @id
+END
+GO
+
+-- ===================================================
+-- Sp(PostContact)
+-- ===================================================
+CREATE PROCEDURE PostContact
+	@id BIGINT,
+	@name VARCHAR(100),
+	@address VARCHAR(100),
+	@phone BIGINT
+AS
+BEGIN
+	INSERT INTO contact (id,name,address,phone)
+	VALUES
+	(@id,@name,@address,@phone)
+END
+GO
+
+-- ===================================================
+-- Sp(PutContact)
+-- ===================================================
+CREATE PROCEDURE PutContact
+	@id BIGINT,
+	@name VARCHAR(100),
+	@address VARCHAR(100),
+	@phone BIGINT
+AS
+BEGIN
+	UPDATE contact
+	SET name = @name, address = @address, phone = @phone
+	WHERE id = @id
+END
+GO
+-- ===================================================
+-- Sp(DeleteContact)
+-- ===================================================
+CREATE PROCEDURE DeleteContact
+	@id BIGINT
+AS
+BEGIN
+	DELETE contact 
+	WHERE id = @id
+END
+GO
 
 
 Execute.GetClients
@@ -143,6 +207,4 @@ EXECUTE.PutClients @Accion = 'PutClientsName', @name = 'Sql Update', @cc =7;
 EXECUTE.PutClients @Accion = 'PutAllClients', @cc=1,
 @name = 'Update Name', @address = 'Update Address', @phone1 = 1, @phone2 = 2, 
 @reference = 'Update Reference', @payment_method = 'Method Update';
-
-
 EXECUTE GetOrderAbout
