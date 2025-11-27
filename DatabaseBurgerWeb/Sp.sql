@@ -208,6 +208,19 @@ BEGIN
 	SELECT id, name FROM menuHamburger
 END
 GO
+-- ===================================================
+-- Sp(GetMenuHamburgerId)
+-- ===================================================
+CREATE PROCEDURE GetMenuHamburgerId
+	@id BIGINT
+AS
+BEGIN
+	SELECT id, name FROM menuHamburger
+	WHERE id = @id
+END
+GO
+
+
 
 
 Execute.GetClients
