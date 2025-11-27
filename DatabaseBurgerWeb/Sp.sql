@@ -256,7 +256,28 @@ BEGIN
 	WHERE id = @id
 END
 GO
+-- ===================================================
+-- Sp(GetMenuHamburger)
+-- ===================================================
+CREATE PROCEDURE GetaboutHamburger
+AS
+BEGIN
+	SELECT id,name FROM aboutHamburger
+END
+GO
+-- ===================================================
+-- Sp(GetMenuHamburger)
+-- ===================================================
+  
 
+CREATE PROCEDURE GetaboutHamburgerId
+	@id BIGINT
+AS
+BEGIN
+	SELECT id,name FROM aboutHamburger
+	WHERE id = @id
+END
+GO
 
 
 Execute.GetClients
