@@ -232,6 +232,20 @@ BEGIN
 	(@id,@name)
 END
 GO
+-- ===================================================
+-- Sp(PostMenuHamburger)
+-- ===================================================
+CREATE PROCEDURE PutmenuHamburger
+	@id BIGINT,
+	@name VARCHAR(100)
+AS
+BEGIN
+	UPDATE menuHamburger
+	SET name = @name
+	WHERE id = @id
+END
+GO
+
 
 
 
