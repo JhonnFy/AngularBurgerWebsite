@@ -235,8 +235,9 @@ Tabla de sedes / tiendas:
 ---
 
 ## SeguridadAppConfig
-Install-Package Microsoft.Extensions.Configuration
-Install-Package Microsoft.Extensions.Configuration.Json
+- Install-Package Microsoft.Extensions.Configuration
+- Install-Package Microsoft.Extensions.Configuration.Json
+
 
 
 
