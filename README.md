@@ -11,6 +11,7 @@ Aplicación desarrollada en .NET con arquitectura en capas (Data, Business, Cont
 3. [OrdenInsert](#OrdenInsert)
 4. [Test](#Test)
 5. [ReglasDeNegocio](#ReglasDeNegocio)
+6. [SeguridadAppConfig](#SeguridadAppConfig)
 ---
 
 ## FlujoDePedidosClientes
@@ -233,6 +234,7 @@ Tabla de sedes / tiendas:
 
 ---
 
+## SeguridadAppConfig
 
 
 
