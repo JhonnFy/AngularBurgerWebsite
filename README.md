@@ -235,7 +235,9 @@ Tabla de sedes / tiendas:
 ---
 
 ## SeguridadAppConfig
-<img width="284" height="198" alt="image" src="https://github.com/user-attachments/assets/d27daea8-b653-4f35-be16-587fb6402fff" />
+Install-Package Microsoft.Extensions.Configuration
+Install-Package Microsoft.Extensions.Configuration.Json
+
 
 
 
