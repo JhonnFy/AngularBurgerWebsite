@@ -41,7 +41,7 @@ Datos que se registran:
 
 - **About (domicilio)** → se registran pedidos de:  
   - The Classics About Burger  
-
+  
 Cada pedido:
 
 - Se vincula con un cliente (ya registrado en este momento).  
@@ -241,6 +241,7 @@ Tabla de sedes / tiendas:
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/663967dc-4275-401d-8cff-a23879fdea28" />
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/0c47091e-ef51-455c-9a68-ac7dd7eb2f36" />
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/f9f65f37-adea-4712-8d88-84cd79a7eced" />
+
 
 
 
