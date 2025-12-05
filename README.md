@@ -21,7 +21,7 @@ Aplicación desarrollada en .NET con arquitectura en capas (Data, Business, Cont
 El cliente solo se registra cuando hace un pedido, ya sea en **Menu** (venta física) o **About** (venta a domicilio).
 
 Datos que se registran:
-
+ 
 - Nombre  
 - Cédula (CC)  
 - Dirección  
@@ -241,6 +241,7 @@ Tabla de sedes / tiendas:
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/663967dc-4275-401d-8cff-a23879fdea28" />
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/0c47091e-ef51-455c-9a68-ac7dd7eb2f36" />
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/f9f65f37-adea-4712-8d88-84cd79a7eced" />
+
 
 
 
