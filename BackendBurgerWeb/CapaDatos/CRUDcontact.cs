@@ -17,7 +17,7 @@ namespace CapaDatos
     {
         private Conexion conexion = new Conexion();
 
-        public bool DeleteContact(ModeloContact DeleteContact)
+        public bool DeleteContact(ModeloContact deleteContact)
         {
             ModeloContact model = null;
 
@@ -30,14 +30,14 @@ namespace CapaDatos
                     using (var cmd = new SqlCommand("DeleteContact", db))
                     {
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@id", DeleteContact.id);
+                        cmd.Parameters.Add("@id", SqlDbType.BigInt).Value = deleteContact.id;
 
 
                         int rowsAffected = cmd.ExecuteNonQuery();
 
                         if (rowsAffected > 0)
                         {
-                            model = DeleteContact;
+                            model = deleteContact;
                         }
 
                     }
@@ -175,11 +175,21 @@ namespace CapaDatos
                             {
                                 list.Add(new ModeloContact
                                 {
-                                    id = reader.GetInt64(0),
-                                    name = reader.GetString(1),
-                                    address = reader.GetString(2),
-                                    phone = reader.GetInt64(3)
+                                    //id = reader.GetInt64(0),
+                                    id = reader.GetInt64(reader.GetOrdinal("id")),
+                                    //name = reader.GetString(1),
+                                    name = reader.IsDBNull(reader.GetOrdinal("name")) ? "" : reader.GetString(reader.GetOrdinal("name")),
+                                    //address = reader.GetString(2),
+                                    address = reader.IsDBNull(reader.GetOrdinal("address")) ? "" : reader.GetString(reader.GetOrdinal("address")),
+                                    //phone = reader.GetInt64(3)
+                                    phone = reader.IsDBNull(reader.GetOrdinal("phone")) ? 0 : reader.GetInt64(reader.GetOrdinal("phone"))
                                 });
+
+                                //id BigInt
+                                //name Varchar50
+                                //address Varchar50
+                                //phone BigInt
+
                             }
                         }
                     }
