@@ -87,30 +87,25 @@ namespace CapaDatos
             return model != null;
         }
 
-        public ModeloContact PostContac(ModeloContact PostContac)
+        public ModeloContact PostContac(ModeloContact postContac)
         {
-            ModeloContact model = null;
-
             try
             {
                 using (var db = conexion.ObtenerCadenaDeConexion())
                 {
                     db.Open();
+
                     using (var cmd = new SqlCommand("PostContact", db))
                     {
-                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.AddWithValue("@id",PostContac.id);
-                        cmd.Parameters.AddWithValue("@name",PostContac.name);
-                        cmd.Parameters.AddWithValue("@address", PostContac.address);
-                        cmd.Parameters.AddWithValue("@phone", PostContac.phone);
+                        cmd.Parameters.Add("@id", SqlDbType.BigInt).Value = postContac.id;
+                        cmd.Parameters.Add("@name", SqlDbType.NVarChar,50).Value = postContac.name;
+                        cmd.Parameters.Add("@address", SqlDbType.NVarChar,200).Value = postContac.address;
+                        cmd.Parameters.Add("@phone", SqlDbType.BigInt).Value = postContac.phone;
 
-                        int rowsAffected = cmd.ExecuteNonQuery();
-
-                        if (rowsAffected > 0)
-                        {
-                            model = PostContac;
-                        }
+                        cmd.ExecuteNonQuery();
+                        return postContac;
                     }
                 }
             }
@@ -118,7 +113,6 @@ namespace CapaDatos
             {
                 throw new Exception("[****].[Error].[PostContact]" + ex.Message);
             }
-            return model;
         }
         
         public ModeloContact GetContactId(long id)
