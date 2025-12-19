@@ -266,6 +266,9 @@ Tabla de sedes / tiendas:
 6️⃣ - Reiniciar Visual Studio
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/0c16263a-01dd-4047-b843-be32f71ce636" />
 
+7️⃣ - Testing Cadena De Conexion
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/b3233faa-fb46-4cfe-ac2a-5105e6c72ac1" />
+
 
 
 
