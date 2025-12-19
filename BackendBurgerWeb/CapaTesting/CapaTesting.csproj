@@ -13,14 +13,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CapaDatos\CapaDatos.csproj" />
+    <Compile Remove="Testing AboutHamburger\**" />
+    <Compile Remove="Testing Clients\**" />
+    <Compile Remove="Testing Contact\**" />
+    <Compile Remove="Testing MenuHamburger\**" />
+    <EmbeddedResource Remove="Testing AboutHamburger\**" />
+    <EmbeddedResource Remove="Testing Clients\**" />
+    <EmbeddedResource Remove="Testing Contact\**" />
+    <EmbeddedResource Remove="Testing MenuHamburger\**" />
+    <None Remove="Testing AboutHamburger\**" />
+    <None Remove="Testing Clients\**" />
+    <None Remove="Testing Contact\**" />
+    <None Remove="Testing MenuHamburger\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Testing AboutHamburger\" />
-    <Folder Include="Testing Clients\" />
-    <Folder Include="Testing Contact\" />
-    <Folder Include="Testing MenuHamburger\" />
+    <ProjectReference Include="..\CapaDatos\CapaDatos.csproj" />
   </ItemGroup>
 
 </Project>
