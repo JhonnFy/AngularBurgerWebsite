@@ -290,9 +290,31 @@ BEGIN
 END
 GO
 -- ===================================================
+-- Sp(GetAboutHamburger)
+-- ===================================================
+CREATE PROCEDURE [dbo].[GetAboutHamburger]
+AS
+BEGIN
+	SELECT id,name FROM aboutHamburger
+END
+GO
+
+-- ===================================================
+-- Sp(GetAboutHamburgerId)
+-- ===================================================
+CREATE PROCEDURE [dbo].[GetAboutHamburgerId]
+	@id BIGINT
+AS
+BEGIN
+	SELECT id,name FROM aboutHamburger
+	WHERE id = @id
+END
+GO
+
+-- ===================================================
 -- Sp(PutAboutHamburger)
 -- ===================================================
-CREATE PROCEDURE PutAboutHamburger
+CREATE PROCEDURE [dbo].[PutAboutHamburger]
 	@id BIGINT,
 	@name VARCHAR(100)
 AS
@@ -302,10 +324,25 @@ BEGIN
 	WHERE id = @id
 END
 GO
+
+-- ===================================================
+-- Sp(PostAboutHamburger)
+-- ===================================================
+CREATE PROCEDURE [dbo].[PostAboutHamburger]
+	@id BIGINT,
+	@name VARCHAR(100)
+AS
+BEGIN
+	INSERT INTO aboutHamburger (id, name) 
+	VALUES
+	(@id,@name)
+END
+GO
+
 -- ===================================================
 -- Sp(DeleteAboutHamburger)
 -- ===================================================
-CREATE PROCEDURE DeleteAboutHamburger
+CREATE PROCEDURE [dbo].[DeleteAboutHamburger]
 	@id BIGINT
 AS
 BEGIN
@@ -313,7 +350,6 @@ BEGIN
 	WHERE id = @id
 END
 GO
-
 
 Execute.GetClients
 Execute.GetClientsId @cc=1;
