@@ -16,6 +16,31 @@ namespace CapaDatos
     public class CRUDaboutHamburger
     {
         Conexion conexion = new Conexion();
+                
+        public bool PutAboutHamburgers(ModeloAboutHamburger putAbout)
+        {
+            try
+            {
+                using (var db = conexion.ObtenerCadenaDeConexion())
+                {
+                    db.Open();
+                    using (var cmd = new SqlCommand("PutAboutHamburger", db))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.Add("@id", SqlDbType.BigInt).Value = putAbout.id;
+                        cmd.Parameters.Add("@name", SqlDbType.NVarChar, 50).Value = putAbout.name;
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                }
+            }catch(Exception ex)
+            {
+                throw new Exception("[****].[Error].[PutAboutHamburgers]" + ex.Message);
+            }
+        }
+
 
         public ModeloAboutHamburger PostAboutHamburgers(ModeloAboutHamburger postAbout)
         {            
