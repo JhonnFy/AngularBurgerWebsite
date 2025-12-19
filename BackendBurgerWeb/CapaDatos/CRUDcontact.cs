@@ -10,6 +10,7 @@ using System.Net.WebSockets;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CapaDatos
 {
@@ -120,7 +121,7 @@ namespace CapaDatos
             return model;
         }
         
-        public ModeloContact GetContactId(int id)
+        public ModeloContact GetContactId(long id)
         {
             ModeloContact model = null;
 
@@ -131,8 +132,8 @@ namespace CapaDatos
                     db.Open();
                     using (var cmd = new SqlCommand("GetContactId", db))
                     {
-                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("@id", SqlDbType.BigInt).Value = id;
 
                         using (var reader = cmd.ExecuteReader())
                         {
@@ -140,10 +141,10 @@ namespace CapaDatos
                             {
                                 model = new ModeloContact()
                                 {
-                                    id = reader.GetInt64(0),
-                                    name = reader.GetString(1),
-                                    address = reader.GetString(2),
-                                    phone = reader.GetInt64(3)
+                                    id = reader.GetInt64(reader.GetOrdinal("id")),
+                                    name = reader.IsDBNull(reader.GetOrdinal("name")) ? "" : reader.GetString(reader.GetOrdinal("name")),
+                                    address = reader.IsDBNull(reader.GetOrdinal("address")) ? "" : reader.GetString(reader.GetOrdinal("address")),
+                                    phone = reader.IsDBNull(reader.GetOrdinal("phone")) ? (long?)null : reader.GetInt64(reader.GetOrdinal("phone"))
                                 };
                             }
                         }
@@ -175,21 +176,11 @@ namespace CapaDatos
                             {
                                 list.Add(new ModeloContact
                                 {
-                                    //id = reader.GetInt64(0),
                                     id = reader.GetInt64(reader.GetOrdinal("id")),
-                                    //name = reader.GetString(1),
                                     name = reader.IsDBNull(reader.GetOrdinal("name")) ? "" : reader.GetString(reader.GetOrdinal("name")),
-                                    //address = reader.GetString(2),
                                     address = reader.IsDBNull(reader.GetOrdinal("address")) ? "" : reader.GetString(reader.GetOrdinal("address")),
-                                    //phone = reader.GetInt64(3)
-                                    phone = reader.IsDBNull(reader.GetOrdinal("phone")) ? 0 : reader.GetInt64(reader.GetOrdinal("phone"))
+                                    phone = reader.IsDBNull(reader.GetOrdinal("phone")) ? (long?)null : reader.GetInt64(reader.GetOrdinal("phone"))
                                 });
-
-                                //id BigInt
-                                //name Varchar50
-                                //address Varchar50
-                                //phone BigInt
-
                             }
                         }
                     }

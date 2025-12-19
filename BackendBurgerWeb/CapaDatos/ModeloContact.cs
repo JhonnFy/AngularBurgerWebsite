@@ -11,8 +11,8 @@ namespace CapaDatos
         public long id { get; set; }
         public string name { get; set; }
         public string address { get; set; }
-        public long phone { get; set; }
-
+        public long? phone { get; set; }
+        
         public ModeloContact(string name, string address, long phone)
         {
             this.name = name;
@@ -24,7 +24,7 @@ namespace CapaDatos
         {
             name = string.Empty;
             address = string.Empty;
-            phone = 0;
+            phone = null;
         }
 
     }
