@@ -21,8 +21,6 @@ namespace CapaDatos
 
         public bool DeleteContact(ModeloContact deleteContact)
         {
-            ModeloContact model = null;
-
             try
             {
                 using (var db = conexion.ObtenerCadenaDeConexion())
@@ -31,17 +29,11 @@ namespace CapaDatos
 
                     using (var cmd = new SqlCommand("DeleteContact", db))
                     {
-                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.Add("@id", SqlDbType.BigInt).Value = deleteContact.id;
-
-
+                        
                         int rowsAffected = cmd.ExecuteNonQuery();
-
-                        if (rowsAffected > 0)
-                        {
-                            model = deleteContact;
-                        }
-
+                        return rowsAffected > 0;
                     }
                 }
             }
@@ -49,7 +41,6 @@ namespace CapaDatos
             {
                 throw new Exception("[****].[Error].[DeleteContact]" + ex.Message);
             }
-            return model != null;
         }
 
 
