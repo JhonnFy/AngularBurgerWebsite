@@ -10,7 +10,7 @@ Aplicación desarrollada en .NET con arquitectura en capas (Data, Business, Cont
 3. [OrdenInsert](#OrdenInsert)
 4. [Test](#Test)
 5. [ReglasDeNegocio](#ReglasDeNegocio)
-6. [SeguridadAppConfig](#SeguridadAppConfig)
+6. [CifradoAppConfig](#CifradoAppConfig)
 
 ---
    
@@ -232,19 +232,39 @@ Tabla de sedes / tiendas:
 
 ---
 
-## SeguridadAppConfig
-- Install-Package Microsoft.Extensions.Configuration
-- Install-Package Microsoft.Extensions.Configuration.Json
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/9ba2db52-3ece-49d4-91c3-9f772eacd793" />
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/90650fec-f585-4198-ab8f-700dac652085" />
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/50e515b4-d68e-4052-8953-75e06819f455" />
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/663967dc-4275-401d-8cff-a23879fdea28" />
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/0c47091e-ef51-455c-9a68-ac7dd7eb2f36" />
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/f9f65f37-adea-4712-8d88-84cd79a7eced" />
+## CifradoAppConfig
+- 1️⃣ Crear Una Rama Nueva
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/c45c8a01-48ee-4243-bdaf-0fa40eb5cbc6" />
+- 2️⃣ Definir las variables de entorno
 
+- | Variable    | Valor                    |
+- | ----------- | ------------------------ |
+- | DB_SERVER   | DESKTOP-1276GPH          |
+- | DB_DATABASE | BurgerWeb                |
+- | DB_USER     | AdminDeveloper           |
+- | DB_PASSWORD | AdminDeveloper0312809833 |
 
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/21b29578-2326-4921-bc6a-7fe2ec285365" />
 
+3️⃣ - Crear Las Variables
+- echo 'export DB_SERVER="DESKTOP-1276GPH"' >> ~/.bashrc
+- echo 'export DB_DATABASE="BurgerWeb"' >> ~/.bashrc
+- echo 'export DB_USER="AdminDeveloper"' >> ~/.bashrc
+- echo 'export DB_PASSWORD="AdminDeveloper0312809833"' >> ~/.bashrc
+- source ~/.bashrc
+  
+4️⃣ - Consultar Los Valores Almacenados
+- echo $env:DB_SERVER
+- echo $env:DB_DATABASE
+- echo $env:DB_USER
+- echo $env:DB_PASSWORD
 
+5️⃣ - Modificar El AppConfig
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/031959c7-eed6-48bc-9429-1c1a8a6a688d" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/efc75842-7d91-4637-9708-c7303b195e63" />
+
+6️⃣ - Reiniciar Visual Studio
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/0c16263a-01dd-4047-b843-be32f71ce636" />
 
 
 
