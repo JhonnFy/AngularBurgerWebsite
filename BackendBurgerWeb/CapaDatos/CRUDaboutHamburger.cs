@@ -12,9 +12,35 @@ using System.Threading.Tasks;
 
 namespace CapaDatos
 {
+
     public class CRUDaboutHamburger
     {
         Conexion conexion = new Conexion();
+
+        public ModeloAboutHamburger PostAboutHamburgers(ModeloAboutHamburger postAbout)
+        {            
+            try
+            {
+                using (var db = conexion.ObtenerCadenaDeConexion())
+                {
+                    db.Open();
+
+                    using (var cmd = new SqlCommand("PostAboutHamburger",db))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("@id", SqlDbType.BigInt).Value = postAbout.id;
+                        cmd.Parameters.Add("@name", SqlDbType.NVarChar, 50).Value = postAbout.name;
+
+                        cmd.ExecuteNonQuery();
+                        return postAbout;
+                    }
+                }
+            }catch(Exception ex)
+            {
+                throw new Exception("[****].[Error].[PostAboutHamburgers]" + ex.Message);
+            }
+        }
+        
 
         public ModeloAboutHamburger GetAboutHamburgersId(long id)
         {
@@ -47,6 +73,7 @@ namespace CapaDatos
                 }
             }catch(Exception ex)
             {
+                Debug.WriteLine("[****].[Error].[GetAboutHamburgersId]" + ex.Message);
                 throw new Exception("[****].[Error].[GetAboutHamburgersId]" + ex.Message);
             }
             return model;
@@ -81,6 +108,7 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
+                Debug.WriteLine("[****].[Error].[GetAboutHamburgers]" + ex.Message);
                 throw new Exception("[****].[Error].[GetAboutHamburgers]" + ex.Message);
             }
             return list;
