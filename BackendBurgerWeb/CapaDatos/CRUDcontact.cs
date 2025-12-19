@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.WebSockets;
 using System.Numerics;
+using System.Security.Cryptography.Pkcs;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -52,10 +53,8 @@ namespace CapaDatos
         }
 
 
-        public bool PutContact(ModeloContact PutContact)
-        {
-            ModeloContact model = null;
-
+        public bool PutContact(ModeloContact putContact)
+        {            
             try
             {
                 using (var db = conexion.ObtenerCadenaDeConexion())
@@ -64,19 +63,14 @@ namespace CapaDatos
                     using (var cmd =  new SqlCommand("PutContact", db))
                     {
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                        cmd.Parameters.AddWithValue("@id", PutContact.id);
-                        cmd.Parameters.AddWithValue("@name", PutContact.name);
-                        cmd.Parameters.AddWithValue("@address", PutContact.address);
-                        cmd.Parameters.AddWithValue("@phone", PutContact.phone);
+                        
+                        cmd.Parameters.Add("@id", SqlDbType.BigInt).Value = putContact.id;
+                        cmd.Parameters.Add("@name", SqlDbType.NVarChar,50).Value = putContact.name;
+                        cmd.Parameters.Add("@address", SqlDbType.NVarChar, 200).Value = putContact.address;
+                        cmd.Parameters.Add("@phone", SqlDbType.BigInt).Value = putContact.phone;
 
                         int rowsAffected = cmd.ExecuteNonQuery();
-
-                        if (rowsAffected > 0)
-                        {
-                            model = PutContact;
-                        }
-
+                        return rowsAffected > 0;
                     }
                 }
             }
@@ -84,7 +78,6 @@ namespace CapaDatos
             {
                 throw new Exception("[****].[Error].[PutContact]" + ex.Message);
             }
-            return model != null;
         }
 
         public ModeloContact PostContac(ModeloContact postContac)
@@ -103,7 +96,7 @@ namespace CapaDatos
                         cmd.Parameters.Add("@name", SqlDbType.NVarChar,50).Value = postContac.name;
                         cmd.Parameters.Add("@address", SqlDbType.NVarChar,200).Value = postContac.address;
                         cmd.Parameters.Add("@phone", SqlDbType.BigInt).Value = postContac.phone;
-
+                        
                         cmd.ExecuteNonQuery();
                         return postContac;
                     }
