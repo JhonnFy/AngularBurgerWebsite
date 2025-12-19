@@ -25,15 +25,20 @@ namespace CapaDatos
                     throw new Exception("[----CapaDatos----].[ERROR].Cadena de conexión vacía o no encontrada.");
                 }
 
-                cadenaConexion = cs.ConnectionString;
+                cadenaConexion = cs.ConnectionString
+                    .Replace("{DB_SERVER}", Environment.GetEnvironmentVariable("DB_SERVER"))
+                    .Replace("{DB_DATABASE}", Environment.GetEnvironmentVariable("DB_DATABASE"))
+                    .Replace("{DB_USER}", Environment.GetEnvironmentVariable("DB_USER"))
+                    .Replace("{DB_PASSWORD}", Environment.GetEnvironmentVariable("DB_PASSWORD"));
+
                 Debug.WriteLine("[****CapaDatos****].[OK].[Conexion Exitosa A dbBurgerWeb]");
                 Console.WriteLine("[****CapaDatos****].[OK].[Conexion Exitosa A dbBurgerWeb]");
 
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("[----CapaDatos----].[ERROR].[No Se Conecta A BurgerWeb]" + ex.Message);
-                Console.WriteLine("[----CapaDatos----].[ERROR].[No Se Conecta A BurgerWeb]" + ex.Message);
+                Debug.WriteLine("[----CapaDatos----].[ERROR].[No Se Conecta A BurgerWeb] " + ex.Message);
+                Console.WriteLine("[----CapaDatos----].[ERROR].[No Se Conecta A BurgerWeb] " + ex.Message);
             }
         }
 
@@ -43,6 +48,5 @@ namespace CapaDatos
             Console.WriteLine("[****CapaDatos****].[OK].[Retornando Cadena De Conexion]");
             return new SqlConnection(cadenaConexion);
         }
-
     }
 }
