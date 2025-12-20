@@ -245,6 +245,7 @@ Tabla de sedes / tiendas:
 - | DB_PASSWORD | AdminDeveloper0312809833 |
 
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/21b29578-2326-4921-bc6a-7fe2ec285365" />
+
 3️⃣ - Crear Las Variables
 - echo 'export DB_SERVER="DESKTOP-1276GPH"' >> ~/.bashrc
 - echo 'export DB_DATABASE="BurgerWeb"' >> ~/.bashrc
@@ -260,6 +261,7 @@ Tabla de sedes / tiendas:
 
 5️⃣ - Modificar El AppConfig
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/031959c7-eed6-48bc-9429-1c1a8a6a688d" />
+
 
 
 
