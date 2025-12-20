@@ -258,6 +258,11 @@ Tabla de sedes / tiendas:
 - echo $env:DB_USER
 - echo $env:DB_PASSWORD
 
+5️⃣ - Modificar El AppConfig
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/031959c7-eed6-48bc-9429-1c1a8a6a688d" />
+
+
+
 
 
 
