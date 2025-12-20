@@ -235,16 +235,12 @@ Tabla de sedes / tiendas:
 ## CifradoAppConfig
 - Crear Una Rama Nueva
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/c45c8a01-48ee-4243-bdaf-0fa40eb5cbc6" />
-- Identificar los appConfig dentro de la solución
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/a300f6ce-af11-44bc-b242-68831c51326c" />
-- IDentificar la ruta local del AppConfig: C:\Developer\AngularBurgerWebsite\BackendBurgerWeb\CapaDatos\App.config
-- Ejecutar cmd como admin
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/c2c04a45-dbde-496c-8f98-9b6dad1d816c" />
-- Encriptar: "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\aspnet_regiis.exe" -pef "connectionStrings" "C:\Developer\AngularBurgerWebsite\BackendBurgerWeb\CapaDatos"
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/458d3999-5fdd-4bc4-9c17-f9ebb721f1a4" />
-
-
-
+| Variable    | Valor                    |
+| ----------- | ------------------------ |
+| DB_SERVER   | DESKTOP-1276GPH          |
+| DB_DATABASE | BurgerWeb                |
+| DB_USER     | AdminDeveloper           |
+| DB_PASSWORD | AdminDeveloper0312809833 |
 
 
 
