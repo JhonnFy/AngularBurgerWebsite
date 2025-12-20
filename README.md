@@ -244,6 +244,15 @@ Tabla de sedes / tiendas:
 - | DB_USER     | AdminDeveloper           |
 - | DB_PASSWORD | AdminDeveloper0312809833 |
 
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/21b29578-2326-4921-bc6a-7fe2ec285365" />
+
+- echo 'export DB_SERVER="DESKTOP-1276GPH"' >> ~/.bashrc
+- echo 'export DB_DATABASE="BurgerWeb"' >> ~/.bashrc
+- echo 'export DB_USER="AdminDeveloper"' >> ~/.bashrc
+- echo 'export DB_PASSWORD="AdminDeveloper0312809833"' >> ~/.bashrc
+- source ~/.bashrc
+
+
 
 
 
