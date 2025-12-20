@@ -252,6 +252,10 @@ Tabla de sedes / tiendas:
 - echo 'export DB_PASSWORD="AdminDeveloper0312809833"' >> ~/.bashrc
 - source ~/.bashrc
 
+- echo $env:DB_SERVER
+- echo $env:DB_DATABASE
+- echo $env:DB_USER
+- echo $env:DB_PASSWORD
 
 
 
