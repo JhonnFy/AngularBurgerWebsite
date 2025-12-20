@@ -235,12 +235,16 @@ Tabla de sedes / tiendas:
 ## CifradoAppConfig
 - Crear Una Rama Nueva
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/c45c8a01-48ee-4243-bdaf-0fa40eb5cbc6" />
-| Variable    | Valor                    |
-| ----------- | ------------------------ |
-| DB_SERVER   | DESKTOP-1276GPH          |
-| DB_DATABASE | BurgerWeb                |
-| DB_USER     | AdminDeveloper           |
-| DB_PASSWORD | AdminDeveloper0312809833 |
+- Definir las variables de entorno
+<img width="284" height="125" alt="image" src="https://github.com/user-attachments/assets/238f5da9-7c8a-414e-868d-7799f45ad53b" />
+
+- | Variable    | Valor                    |
+- | ----------- | ------------------------ |
+- | DB_SERVER   | DESKTOP-1276GPH          |
+- | DB_DATABASE | BurgerWeb                |
+- | DB_USER     | AdminDeveloper           |
+- | DB_PASSWORD | AdminDeveloper0312809833 |
+
 
 
 
