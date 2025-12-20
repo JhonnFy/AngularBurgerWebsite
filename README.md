@@ -263,6 +263,9 @@ Tabla de sedes / tiendas:
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/031959c7-eed6-48bc-9429-1c1a8a6a688d" />
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/efc75842-7d91-4637-9708-c7303b195e63" />
 
+6️⃣ - Reiniciar Visual Studio
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/0c16263a-01dd-4047-b843-be32f71ce636" />
+
 
 
 
