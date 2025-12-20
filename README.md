@@ -233,9 +233,9 @@ Tabla de sedes / tiendas:
 ---
 
 ## CifradoAppConfig
-- Crear Una Rama Nueva
+- 1️⃣ Crear Una Rama Nueva
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/c45c8a01-48ee-4243-bdaf-0fa40eb5cbc6" />
-- Definir las variables de entorno
+- 2️⃣ Definir las variables de entorno
 
 - | Variable    | Valor                    |
 - | ----------- | ------------------------ |
@@ -245,17 +245,19 @@ Tabla de sedes / tiendas:
 - | DB_PASSWORD | AdminDeveloper0312809833 |
 
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/21b29578-2326-4921-bc6a-7fe2ec285365" />
-
+3️⃣ - Crear Las Variables
 - echo 'export DB_SERVER="DESKTOP-1276GPH"' >> ~/.bashrc
 - echo 'export DB_DATABASE="BurgerWeb"' >> ~/.bashrc
 - echo 'export DB_USER="AdminDeveloper"' >> ~/.bashrc
 - echo 'export DB_PASSWORD="AdminDeveloper0312809833"' >> ~/.bashrc
 - source ~/.bashrc
-
+  
+4️⃣ - Consultar Los Valores Almacenados
 - echo $env:DB_SERVER
 - echo $env:DB_DATABASE
 - echo $env:DB_USER
 - echo $env:DB_PASSWORD
+
 
 
 
