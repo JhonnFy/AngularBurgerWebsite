@@ -261,6 +261,8 @@ Tabla de sedes / tiendas:
 
 5️⃣ - Modificar El AppConfig
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/031959c7-eed6-48bc-9429-1c1a8a6a688d" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/efc75842-7d91-4637-9708-c7303b195e63" />
+
 
 
 
