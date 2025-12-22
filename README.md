@@ -1,7 +1,7 @@
 # AngularNetAppi
 
 Aplicación desarrollada en .NET con arquitectura en capas (Data, Business, Controller, Interface
-      
+       
 ---  
 ## Tabla de Contenidos
      
@@ -268,6 +268,7 @@ Tabla de sedes / tiendas:
 
 7️⃣ - Testing Cadena De Conexion
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/b3233faa-fb46-4cfe-ac2a-5105e6c72ac1" />
+
 
 
 
